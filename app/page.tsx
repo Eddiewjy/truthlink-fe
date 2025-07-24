@@ -1,101 +1,217 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useAccount } from 'wagmi'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Shield, Users, Building2, Zap } from 'lucide-react'
+import { useAuthStore } from '@/lib/store'
+
+export default function HomePage() {
+  const { isConnected, address } = useAccount()
+  const router = useRouter()
+  const { userType, setUserType, setWalletAddress } = useAuthStore()
+
+  useEffect(() => {
+    if (isConnected && address) {
+      setWalletAddress(address)
+    }
+  }, [isConnected, address, setWalletAddress])
+
+  const handleUserTypeSelection = (type: 'user' | 'enterprise') => {
+    setUserType(type)
+    router.push(type === 'user' ? '/user/dashboard' : '/enterprise/dashboard')
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="relative">
+        {/* Header */}
+        <header className="border-b border-white/10 backdrop-blur-sm">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex items-center justify-between">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex items-center space-x-2"
+              >
+                <Shield className="h-8 w-8 text-purple-400" />
+                <span className="text-2xl font-bold text-white">
+                  VerifyChain
+                </span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <ConnectButton />
+              </motion.div>
+            </div>
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Badge
+                variant="secondary"
+                className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30"
+              >
+                <Zap className="w-4 h-4 mr-1" />
+                Web3 Background Verification
+              </Badge>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+            >
+              Decentralized
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                {' '}
+                Background{' '}
+              </span>
+              Verification
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto"
+            >
+              Secure, transparent, and privacy-focused background verification
+              powered by blockchain technology
+            </motion.p>
+
+            {!isConnected ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mb-16"
+              >
+                <p className="text-gray-400 mb-4">
+                  Connect your wallet to get started
+                </p>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16"
+              >
+                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer group">
+                  <CardHeader className="text-center">
+                    <div className="mx-auto mb-4 p-3 rounded-full bg-blue-500/20 w-fit group-hover:bg-blue-500/30 transition-colors">
+                      <Users className="h-8 w-8 text-blue-400" />
+                    </div>
+                    <CardTitle className="text-white">
+                      Individual User
+                    </CardTitle>
+                    <CardDescription className="text-gray-400">
+                      Manage your professional profile and control your privacy
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button
+                      onClick={() => handleUserTypeSelection('user')}
+                      className="w-full bg-blue-600 hover:bg-blue-700"
+                    >
+                      Continue as User
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer group">
+                  <CardHeader className="text-center">
+                    <div className="mx-auto mb-4 p-3 rounded-full bg-purple-500/20 w-fit group-hover:bg-purple-500/30 transition-colors">
+                      <Building2 className="h-8 w-8 text-purple-400" />
+                    </div>
+                    <CardTitle className="text-white">Enterprise</CardTitle>
+                    <CardDescription className="text-gray-400">
+                      Conduct secure background verifications for your
+                      organization
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button
+                      onClick={() => handleUserTypeSelection('enterprise')}
+                      className="w-full bg-purple-600 hover:bg-purple-700"
+                    >
+                      Continue as Enterprise
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="container mx-auto px-4 py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-8"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <Shield className="h-12 w-12 text-green-400 mb-4" />
+                <CardTitle className="text-white">Privacy First</CardTitle>
+                <CardDescription className="text-gray-400">
+                  You control what information to share and with whom
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <Zap className="h-12 w-12 text-yellow-400 mb-4" />
+                <CardTitle className="text-white">
+                  Instant Verification
+                </CardTitle>
+                <CardDescription className="text-gray-400">
+                  Fast and reliable background checks powered by blockchain
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <Users className="h-12 w-12 text-blue-400 mb-4" />
+                <CardTitle className="text-white">Trusted Network</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Built on decentralized trust and transparency
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </motion.div>
+        </section>
+      </div>
     </div>
-  );
+  )
 }
