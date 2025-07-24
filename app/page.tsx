@@ -34,12 +34,12 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
 
       <div className="relative">
         {/* Header */}
-        <header className="border-b border-white/10 backdrop-blur-sm">
+        <header className="border-b border-gray-700/50 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-6">
             <div className="flex items-center justify-between">
               <motion.div
@@ -47,10 +47,8 @@ export default function HomePage() {
                 animate={{ opacity: 1, x: 0 }}
                 className="flex items-center space-x-2"
               >
-                <Shield className="h-8 w-8 text-purple-400" />
-                <span className="text-2xl font-bold text-white">
-                  VerifyChain
-                </span>
+                <Shield className="h-8 w-8 text-green-400" />
+                <span className="text-2xl font-bold text-white">Truthlink</span>
               </motion.div>
 
               <motion.div
@@ -74,7 +72,7 @@ export default function HomePage() {
             >
               <Badge
                 variant="secondary"
-                className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30"
+                className="mb-4 bg-green-500/20 text-green-300 border-green-500/30"
               >
                 <Zap className="w-4 h-4 mr-1" />
                 Web3 Background Verification
@@ -88,7 +86,7 @@ export default function HomePage() {
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
             >
               Decentralized
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-400">
                 {' '}
                 Background{' '}
               </span>
@@ -123,35 +121,35 @@ export default function HomePage() {
                 transition={{ delay: 0.6 }}
                 className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16"
               >
-                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer group">
+                <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all cursor-pointer group">
                   <CardHeader className="text-center">
-                    <div className="mx-auto mb-4 p-3 rounded-full bg-blue-500/20 w-fit group-hover:bg-blue-500/30 transition-colors">
-                      <Users className="h-8 w-8 text-blue-400" />
+                    <div className="mx-auto mb-4 p-3 rounded-full bg-green-500/20 w-fit group-hover:bg-green-500/30 transition-colors">
+                      <Users className="h-8 w-8 text-green-400" />
                     </div>
                     <CardTitle className="text-white">
                       Individual User
                     </CardTitle>
-                    <CardDescription className="text-gray-400">
+                    <CardDescription className="text-gray-300">
                       Manage your professional profile and control your privacy
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Button
                       onClick={() => handleUserTypeSelection('user')}
-                      className="w-full bg-blue-600 hover:bg-blue-700"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
                     >
                       Continue as User
                     </Button>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all cursor-pointer group">
+                <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all cursor-pointer group">
                   <CardHeader className="text-center">
                     <div className="mx-auto mb-4 p-3 rounded-full bg-purple-500/20 w-fit group-hover:bg-purple-500/30 transition-colors">
                       <Building2 className="h-8 w-8 text-purple-400" />
                     </div>
                     <CardTitle className="text-white">Enterprise</CardTitle>
-                    <CardDescription className="text-gray-400">
+                    <CardDescription className="text-gray-300">
                       Conduct secure background verifications for your
                       organization
                     </CardDescription>
@@ -159,7 +157,7 @@ export default function HomePage() {
                   <CardContent>
                     <Button
                       onClick={() => handleUserTypeSelection('enterprise')}
-                      className="w-full bg-purple-600 hover:bg-purple-700"
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                     >
                       Continue as Enterprise
                     </Button>
@@ -178,33 +176,33 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid md:grid-cols-3 gap-8"
           >
-            <Card className="bg-white/5 border-white/10">
+            <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
               <CardHeader>
                 <Shield className="h-12 w-12 text-green-400 mb-4" />
                 <CardTitle className="text-white">Privacy First</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-gray-300">
                   You control what information to share and with whom
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-white/5 border-white/10">
+            <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
               <CardHeader>
-                <Zap className="h-12 w-12 text-yellow-400 mb-4" />
+                <Zap className="h-12 w-12 text-green-400 mb-4" />
                 <CardTitle className="text-white">
                   Instant Verification
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-gray-300">
                   Fast and reliable background checks powered by blockchain
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-white/5 border-white/10">
+            <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
               <CardHeader>
-                <Users className="h-12 w-12 text-blue-400 mb-4" />
+                <Users className="h-12 w-12 text-purple-400 mb-4" />
                 <CardTitle className="text-white">Trusted Network</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-gray-300">
                   Built on decentralized trust and transparency
                 </CardDescription>
               </CardHeader>
