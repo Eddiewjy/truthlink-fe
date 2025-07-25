@@ -24,6 +24,7 @@ import {
   Eye
 } from 'lucide-react'
 import { EnterpriseNavigation } from '@/components/enterprise-navigation'
+import NFTMintDialog from '@/components/nft-mint-dialog'
 
 export default function EnterpriseDashboard() {
   return (
@@ -98,6 +99,26 @@ export default function EnterpriseDashboard() {
               </div>
             </CardContent>
           </Card>
+        </motion.div>
+
+        {/* NFT Mint Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mb-8"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-xl font-semibold text-white mb-1">
+                Work Experience Certificates
+              </h2>
+              <p className="text-gray-400 text-sm">
+                Issue blockchain-verified work experience NFTs for candidates
+              </p>
+            </div>
+            <NFTMintDialog />
+          </div>
         </motion.div>
 
         <motion.div

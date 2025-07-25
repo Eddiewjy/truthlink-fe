@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { Button } from "@/components/ui/button"
-import { Shield, User, FileText, Settings, LogOut } from "lucide-react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useAuthStore } from "@/lib/store"
+import { motion } from 'framer-motion'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { Button } from '@/components/ui/button'
+import { Shield, User, FileText, Settings, LogOut } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useAuthStore } from '@/lib/store'
 
 export function UserNavigation() {
   const router = useRouter()
@@ -15,7 +15,7 @@ export function UserNavigation() {
   const handleLogout = () => {
     setUserType(null)
     setWalletAddress(null)
-    router.push("/")
+    router.push('/')
   }
 
   return (
@@ -27,7 +27,10 @@ export function UserNavigation() {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-8"
           >
-            <Link href="/user/dashboard" className="flex items-center space-x-2">
+            <Link
+              href="/user/dashboard"
+              className="flex items-center space-x-2"
+            >
               <Shield className="h-8 w-8 text-blue-400" />
               <span className="text-2xl font-bold text-white">VerifyChain</span>
             </Link>
@@ -40,20 +43,6 @@ export function UserNavigation() {
                 <User className="h-4 w-4" />
                 <span>Dashboard</span>
               </Link>
-              <Link
-                href="/user/profile"
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-              >
-                <FileText className="h-4 w-4" />
-                <span>Profile</span>
-              </Link>
-              <Link
-                href="/user/settings"
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-              >
-                <Settings className="h-4 w-4" />
-                <span>Settings</span>
-              </Link>
             </nav>
           </motion.div>
 
@@ -64,15 +53,6 @@ export function UserNavigation() {
             className="flex items-center space-x-4"
           >
             <ConnectButton />
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogout}
-              className="border-white/20 text-white hover:bg-white/10 bg-transparent"
-            >
-              <LogOut className="h-4 w-4 mr-2" />
-              Logout
-            </Button>
           </motion.div>
         </div>
       </div>

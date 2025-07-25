@@ -50,13 +50,6 @@ export function EnterpriseNavigation() {
                 <Search className="h-4 w-4" />
                 <span>Search</span>
               </Link>
-              <Link
-                href="/enterprise/settings"
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-              >
-                <Settings className="h-4 w-4" />
-                <span>Settings</span>
-              </Link>
             </nav>
           </motion.div>
 
@@ -67,15 +60,6 @@ export function EnterpriseNavigation() {
             className="flex items-center space-x-4"
           >
             <ConnectButton />
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogout}
-              className="border-white/20 text-white hover:bg-white/10 bg-transparent"
-            >
-              <LogOut className="h-4 w-4 mr-2" />
-              Logout
-            </Button>
           </motion.div>
         </div>
       </div>
