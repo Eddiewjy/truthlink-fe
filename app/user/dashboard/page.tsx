@@ -17,7 +17,9 @@ import {
   FolderOpen,
   ChevronRight,
   MapPin,
-  Calendar
+  Calendar,
+  Award,
+  ExternalLink
 } from 'lucide-react'
 import { useAuthStore } from '@/lib/store'
 import { UserNavigation } from '@/components/user-navigation'
@@ -63,6 +65,34 @@ export default function UserDashboard() {
     }
   ]
 
+  // Recent NFTs data
+  const recentNFTs = [
+    {
+      id: 1,
+      name: 'Excellence Award 2024',
+      type: 'Work Achievement',
+      date: '2024-06-15',
+      image: '/nft-placeholder-1.jpg',
+      verified: true
+    },
+    {
+      id: 2,
+      name: 'Community Leader',
+      type: 'Community Recognition',
+      date: '2024-05-20',
+      image: '/nft-placeholder-2.jpg',
+      verified: true
+    },
+    {
+      id: 3,
+      name: 'Project Innovation',
+      type: 'Project Completion',
+      date: '2024-04-10',
+      image: '/nft-placeholder-3.jpg',
+      verified: true
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
       <UserNavigation />
@@ -87,7 +117,7 @@ export default function UserDashboard() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="lg:col-span-1"
+            className="lg:col-span-1 space-y-6"
           >
             <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
               <CardHeader className="text-center">
@@ -120,6 +150,56 @@ export default function UserDashboard() {
                   Verified User
                 </Badge>
               </CardHeader>
+            </Card>
+
+            {/* 最近获得的NFT卡片 */}
+            <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
+              <CardHeader>
+                <div className="flex items-center space-x-2">
+                  <Award className="w-5 h-5 text-yellow-400" />
+                  <CardTitle className="text-white text-xl">
+                    Recent NFTs
+                  </CardTitle>
+                </div>
+                <CardDescription className="text-gray-300">
+                  Latest achievements and certifications
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {recentNFTs.map((nft, index) => (
+                  <motion.div
+                    key={nft.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + index * 0.1 }}
+                    className="flex items-center space-x-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors duration-200 cursor-pointer group"
+                  >
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                        <Award className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center space-x-2">
+                        <p className="text-sm font-medium text-white truncate">
+                          {nft.name}
+                        </p>
+                        {nft.verified && (
+                          <Badge
+                            variant="secondary"
+                            className="bg-green-500/20 text-green-300 border-green-500/30 text-xs"
+                          >
+                            Verified
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-xs text-gray-400">{nft.type}</p>
+                      <p className="text-xs text-gray-500">{nft.date}</p>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-200" />
+                  </motion.div>
+                ))}
+              </CardContent>
             </Card>
           </motion.div>
 
