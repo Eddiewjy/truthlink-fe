@@ -10,25 +10,58 @@ import {
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
-  FileText,
-  Shield,
-  Eye,
-  EyeOff,
-  CheckCircle,
-  Clock,
-  Plus
+  Briefcase,
+  Users,
+  FolderOpen,
+  ChevronRight,
+  MapPin,
+  Calendar
 } from 'lucide-react'
 import { useAuthStore } from '@/lib/store'
 import { UserNavigation } from '@/components/user-navigation'
+import Link from 'next/link'
 
 export default function UserDashboard() {
   const { walletAddress } = useAuthStore()
 
-  const profileCompleteness = 75
+  // User basic information
+  const userInfo = {
+    name: 'John Smith',
+    age: 28,
+    avatar: '/placeholder-user.jpg',
+    location: 'New York',
+    joinDate: '2023-01-15'
+  }
+
+  // Module data
+  const modules = [
+    {
+      title: 'Work Experience',
+      description: 'Internships, Job Experience',
+      icon: Briefcase,
+      href: '/user/work-experience',
+      color: 'from-blue-500 to-blue-600',
+      count: 3
+    },
+    {
+      title: 'Community Experience',
+      description: 'Activities, Contributions',
+      icon: Users,
+      href: '/user/community-experience',
+      color: 'from-green-500 to-green-600',
+      count: 5
+    },
+    {
+      title: 'Project Experience',
+      description: 'Competitions, Research',
+      icon: FolderOpen,
+      href: '/user/project-experience',
+      color: 'from-purple-500 to-purple-600',
+      count: 7
+    }
+  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
@@ -40,14 +73,16 @@ export default function UserDashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-3xl font-bold text-white mb-2">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">
+            Personal Dashboard
+          </h1>
           <p className="text-gray-300">
-            Manage your professional profile and privacy settings
+            Manage your personal information and professional profile
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Profile Overview */}
+          {/* 用户基础信息卡片 */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -56,277 +91,135 @@ export default function UserDashboard() {
           >
             <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
               <CardHeader className="text-center">
-                <Avatar className="w-24 h-24 mx-auto mb-4">
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback className="bg-green-600 text-white text-2xl">
-                    {walletAddress?.slice(2, 4).toUpperCase()}
+                <Avatar className="w-32 h-32 mx-auto mb-4">
+                  <AvatarImage src={userInfo.avatar} />
+                  <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-3xl">
+                    {userInfo.name.slice(0, 2)}
                   </AvatarFallback>
                 </Avatar>
-                <CardTitle className="text-white">John Doe</CardTitle>
-                <CardDescription className="text-gray-300">
-                  Software Engineer
+                <CardTitle className="text-white text-2xl">
+                  {userInfo.name}
+                </CardTitle>
+                <CardDescription className="text-gray-300 text-lg">
+                  Age {userInfo.age}
                 </CardDescription>
+                <div className="flex items-center justify-center space-x-4 mt-4">
+                  <div className="flex items-center text-gray-300">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    <span className="text-sm">{userInfo.location}</span>
+                  </div>
+                  <div className="flex items-center text-gray-300">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    <span className="text-sm">Joined {userInfo.joinDate}</span>
+                  </div>
+                </div>
                 <Badge
                   variant="secondary"
-                  className="bg-green-500/20 text-green-300 border-green-500/30"
+                  className="bg-green-500/20 text-green-300 border-green-500/30 mt-4"
                 >
-                  <CheckCircle className="w-4 h-4 mr-1" />
-                  Verified
+                  Verified User
                 </Badge>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-gray-300">
-                        Profile Completeness
-                      </span>
-                      <span className="text-white">{profileCompleteness}%</span>
-                    </div>
-                    <Progress value={profileCompleteness} className="h-2" />
-                  </div>
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Complete Profile
-                  </Button>
-                </div>
-              </CardContent>
             </Card>
           </motion.div>
 
-          {/* Main Content */}
+          {/* 模块跳转区域 */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <Tabs defaultValue="resume" className="space-y-6">
-              <TabsList className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
-                <TabsTrigger
-                  value="resume"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white"
-                >
-                  <FileText className="w-4 h-4 mr-2" />
-                  Resume
-                </TabsTrigger>
-                <TabsTrigger
-                  value="privacy"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white"
-                >
-                  <Shield className="w-4 h-4 mr-2" />
-                  Privacy
-                </TabsTrigger>
-                <TabsTrigger
-                  value="requests"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white"
-                >
-                  <Eye className="w-4 h-4 mr-2" />
-                  Requests
-                </TabsTrigger>
-              </TabsList>
+            <div className="grid gap-6">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Experience Modules
+              </h2>
 
-              <TabsContent value="resume" className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                {modules.map((module, index) => (
+                  <motion.div
+                    key={module.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                  >
+                    <Link href={module.href}>
+                      <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/80 transition-all duration-300 cursor-pointer group">
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <div
+                              className={`p-3 rounded-lg bg-gradient-to-r ${module.color} group-hover:scale-110 transition-transform duration-300`}
+                            >
+                              <module.icon className="w-6 h-6 text-white" />
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Badge
+                                variant="secondary"
+                                className="bg-blue-500/20 text-blue-300 border-blue-500/30"
+                              >
+                                {module.count} items
+                              </Badge>
+                              <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+                            </div>
+                          </div>
+                          <CardTitle className="text-white text-xl group-hover:text-blue-300 transition-colors duration-300">
+                            {module.title}
+                          </CardTitle>
+                          <CardDescription className="text-gray-300">
+                            {module.description}
+                          </CardDescription>
+                        </CardHeader>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* 额外的统计信息 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="mt-8"
+              >
                 <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="text-white">
-                      Professional Experience
+                      Profile Overview
                     </CardTitle>
                     <CardDescription className="text-gray-300">
-                      Manage your work history and achievements
+                      Your digital identity statistics
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="border border-gray-700/50 bg-gray-800/30 rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <h3 className="text-white font-semibold">
-                            Senior Software Engineer
-                          </h3>
-                          <p className="text-gray-300">TechCorp Inc.</p>
+                  <CardContent>
+                    <div className="grid grid-cols-3 gap-4 text-center">
+                      <div className="space-y-2">
+                        <div className="text-2xl font-bold text-blue-400">
+                          15
                         </div>
-                        <Badge
-                          variant="outline"
-                          className="border-green-500/50 text-green-300 bg-green-500/10"
-                        >
-                          <CheckCircle className="w-3 h-3 mr-1" />
-                          Verified
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-gray-300">2021 - Present</p>
-                    </div>
-
-                    <div className="border border-gray-700/50 bg-gray-800/30 rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <h3 className="text-white font-semibold">
-                            Software Engineer
-                          </h3>
-                          <p className="text-gray-300">StartupXYZ</p>
+                        <div className="text-sm text-gray-300">
+                          Total Records
                         </div>
-                        <Badge
-                          variant="outline"
-                          className="border-green-500/50 text-green-300 bg-green-500/10"
-                        >
-                          <Clock className="w-3 h-3 mr-1" />
-                          Pending
-                        </Badge>
                       </div>
-                      <p className="text-sm text-gray-300">2019 - 2021</p>
-                    </div>
-
-                    <Button
-                      variant="outline"
-                      className="w-full border-gray-600/50 text-gray-300 hover:bg-gray-800/50 bg-transparent"
-                    >
-                      <Plus className="w-4 h-4 mr-2" />
-                      Add Experience
-                    </Button>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="privacy" className="space-y-6">
-                <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="text-white">
-                      Privacy Controls
-                    </CardTitle>
-                    <CardDescription className="text-gray-300">
-                      Control who can access your information
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="flex items-center justify-between p-4 border border-gray-700/50 bg-gray-800/30 rounded-lg">
-                      <div>
-                        <h3 className="text-white font-medium">
-                          Work Experience
-                        </h3>
-                        <p className="text-sm text-gray-300">
-                          Allow enterprises to view your work history
-                        </p>
+                      <div className="space-y-2">
+                        <div className="text-2xl font-bold text-green-400">
+                          12
+                        </div>
+                        <div className="text-sm text-gray-300">Verified</div>
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-green-500/50 text-green-300 bg-green-500/10"
-                      >
-                        <Eye className="w-4 h-4 mr-1" />
-                        Public
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-4 border border-gray-700/50 bg-gray-800/30 rounded-lg">
-                      <div>
-                        <h3 className="text-white font-medium">Education</h3>
-                        <p className="text-sm text-gray-300">
-                          Share your educational background
-                        </p>
+                      <div className="space-y-2">
+                        <div className="text-2xl font-bold text-purple-400">
+                          8
+                        </div>
+                        <div className="text-sm text-gray-300">
+                          NFT Certificates
+                        </div>
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-purple-500/50 text-purple-300 bg-purple-500/10"
-                      >
-                        <Shield className="w-4 h-4 mr-1" />
-                        Restricted
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-4 border border-gray-700/50 bg-gray-800/30 rounded-lg">
-                      <div>
-                        <h3 className="text-white font-medium">
-                          Personal Details
-                        </h3>
-                        <p className="text-sm text-gray-300">
-                          Contact information and personal data
-                        </p>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-red-500/50 text-red-300 bg-red-500/10"
-                      >
-                        <EyeOff className="w-4 h-4 mr-1" />
-                        Private
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
-              </TabsContent>
-
-              <TabsContent value="requests" className="space-y-6">
-                <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="text-white">
-                      Verification Requests
-                    </CardTitle>
-                    <CardDescription className="text-gray-300">
-                      Manage incoming background check requests
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="border border-gray-700/50 bg-gray-800/30 rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <h3 className="text-white font-semibold">
-                            Microsoft Corporation
-                          </h3>
-                          <p className="text-gray-300 text-sm">
-                            Requesting employment verification
-                          </p>
-                        </div>
-                        <Badge
-                          variant="outline"
-                          className="border-purple-500/50 text-purple-300 bg-purple-500/10"
-                        >
-                          <Clock className="w-3 h-3 mr-1" />
-                          Pending
-                        </Badge>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button
-                          size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white"
-                        >
-                          Approve
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-red-500/50 text-red-300 bg-red-500/10"
-                        >
-                          Decline
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="border border-gray-700/50 bg-gray-800/30 rounded-lg p-4">
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <h3 className="text-white font-semibold">
-                            Google LLC
-                          </h3>
-                          <p className="text-gray-300 text-sm">
-                            Requesting education verification
-                          </p>
-                        </div>
-                        <Badge
-                          variant="outline"
-                          className="border-green-500/50 text-green-300 bg-green-500/10"
-                        >
-                          <CheckCircle className="w-3 h-3 mr-1" />
-                          Approved
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-gray-400">
-                        Approved 2 days ago
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
