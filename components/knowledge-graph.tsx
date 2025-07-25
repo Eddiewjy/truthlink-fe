@@ -37,36 +37,109 @@ interface KnowledgeGraphProps {
 const mockNodes: GraphNode[] = [
   {
     id: '1',
-    label: 'AI Assistant Agent',
+    label: 'CEO Agent',
     type: 'agent',
     detail:
-      'Intelligent assistant agent responsible for handling user queries and task allocation, with natural language understanding and multi-turn dialogue capabilities.',
-    tags: ['NLP', 'Dialogue System', 'Task Scheduling'],
+      'CEO-level AI assistant responsible for executive decision support, talent strategy planning, and enterprise management consulting. Equipped with comprehensive business insights and leadership analysis capabilities.',
+    tags: [
+      'Strategic Decision',
+      'Talent Management',
+      'Business Insights',
+      'Leadership Assessment'
+    ],
     nfts: [
       {
         id: 'n1',
-        name: 'Agent Core NFT',
+        name: 'CEO Core NFT',
         image: '/api/placeholder/64/64',
-        rarity: 'Epic'
+        rarity: 'Legendary'
       },
       {
         id: 'n2',
-        name: 'Skill Token',
+        name: 'Leadership Token',
+        image: '/api/placeholder/64/64',
+        rarity: 'Epic'
+      }
+    ]
+  },
+  {
+    id: '2',
+    label: 'HR Agent',
+    type: 'agent',
+    detail:
+      'HR professional AI assistant specializing in recruitment evaluation, interview analysis, background checks, and talent assessment. Equipped with deep talent identification and evaluation capabilities.',
+    tags: [
+      'Recruitment Evaluation',
+      'Interview Analysis',
+      'Background Check',
+      'Talent Assessment'
+    ],
+    nfts: [
+      {
+        id: 'n3',
+        name: 'HR Expert NFT',
+        image: '/api/placeholder/64/64',
+        rarity: 'Epic'
+      }
+    ]
+  },
+  {
+    id: '3',
+    label: 'Tech Lead Agent',
+    type: 'agent',
+    detail:
+      'Technical leadership AI assistant responsible for technical capability assessment, code review, architecture design evaluation, and technical interview guidance.',
+    tags: [
+      'Technical Assessment',
+      'Code Review',
+      'Architecture Design',
+      'Technical Interview'
+    ],
+    nfts: [
+      {
+        id: 'n4',
+        name: 'Tech Lead Badge',
         image: '/api/placeholder/64/64',
         rarity: 'Rare'
       }
     ]
   },
   {
-    id: '2',
+    id: '4',
+    label: 'Background Check Agent',
+    type: 'agent',
+    detail:
+      'Background check specialist AI assistant responsible for candidate identity verification, resume validation, credit checks, and risk assessment.',
+    tags: [
+      'Identity Verification',
+      'Resume Validation',
+      'Credit Check',
+      'Risk Assessment'
+    ],
+    nfts: [
+      {
+        id: 'n5',
+        name: 'Verification Shield',
+        image: '/api/placeholder/64/64',
+        rarity: 'Epic'
+      }
+    ]
+  },
+  {
+    id: '5',
     label: 'Knowledge Base',
     type: 'knowledge',
     detail:
-      'Enterprise knowledge base containing product documentation, technical specifications, business processes and other structured and unstructured knowledge.',
-    tags: ['Knowledge Management', 'Documentation', 'Search'],
+      'Enterprise knowledge base containing structured and unstructured knowledge including job descriptions, interview standards, evaluation frameworks, industry standards, and best practices.',
+    tags: [
+      'Job Knowledge',
+      'Interview Standards',
+      'Evaluation Framework',
+      'Industry Standards'
+    ],
     nfts: [
       {
-        id: 'n3',
+        id: 'n6',
         name: 'Knowledge Gem',
         image: '/api/placeholder/64/64',
         rarity: 'Legendary'
@@ -74,74 +147,118 @@ const mockNodes: GraphNode[] = [
     ]
   },
   {
-    id: '3',
-    label: 'Data Analytics Tool',
+    id: '6',
+    label: 'Analytics Engine',
     type: 'tool',
     detail:
-      'Data analysis tool providing real-time data processing, visualization chart generation and statistical analysis functions.',
-    tags: ['Data Analysis', 'Visualization', 'Statistics'],
+      'Data analytics engine providing real-time data processing, visualization chart generation, statistical analysis, and predictive modeling capabilities.',
+    tags: [
+      'Data Analysis',
+      'Visualization',
+      'Statistical Modeling',
+      'Predictive Algorithms'
+    ],
     nfts: [
       {
-        id: 'n4',
-        name: 'Analytics Badge',
+        id: 'n7',
+        name: 'Analytics Core',
+        image: '/api/placeholder/64/64',
+        rarity: 'Rare'
+      }
+    ]
+  },
+  {
+    id: '7',
+    label: 'Candidate Database',
+    type: 'data',
+    detail:
+      'Candidate database containing multi-dimensional candidate data including resume information, interview records, assessment results, and background check reports.',
+    tags: [
+      'Resume Data',
+      'Interview Records',
+      'Assessment Results',
+      'Background Reports'
+    ],
+    nfts: []
+  },
+  {
+    id: '8',
+    label: 'Interview System',
+    type: 'tool',
+    detail:
+      'Intelligent interview system supporting online interviews, audio/video recording, real-time assessment, question recommendations, and interview process management.',
+    tags: [
+      'Online Interview',
+      'Real-time Assessment',
+      'Process Management',
+      'Question Bank'
+    ],
+    nfts: [
+      {
+        id: 'n8',
+        name: 'Interview Token',
         image: '/api/placeholder/64/64',
         rarity: 'Common'
       }
     ]
   },
   {
-    id: '4',
-    label: 'User Profile Data',
-    type: 'data',
-    detail:
-      'User profile dataset containing multi-dimensional information including user behavior, preferences, and interaction history.',
-    tags: ['User Profiles', 'Behavior Analysis', 'Personalization'],
-    nfts: []
-  },
-  {
-    id: '5',
+    id: '9',
     label: 'Security Agent',
     type: 'agent',
     detail:
-      'Security monitoring agent for real-time anomaly detection, threat identification and automated response handling.',
-    tags: ['Security Monitoring', 'Threat Detection', 'Auto Response'],
+      'Security monitoring AI assistant responsible for real-time anomaly detection, threat identification, data security, and automated response handling.',
+    tags: [
+      'Security Monitoring',
+      'Threat Detection',
+      'Data Protection',
+      'Automated Response'
+    ],
     nfts: [
       {
-        id: 'n5',
+        id: 'n9',
         name: 'Security Shield',
         image: '/api/placeholder/64/64',
         rarity: 'Epic'
-      }
-    ]
-  },
-  {
-    id: '6',
-    label: 'Workflow Engine',
-    type: 'tool',
-    detail:
-      'Workflow engine supporting complex business process orchestration, automated execution and status monitoring.',
-    tags: ['Workflow', 'Automation', 'Process Management'],
-    nfts: [
-      {
-        id: 'n6',
-        name: 'Flow Token',
-        image: '/api/placeholder/64/64',
-        rarity: 'Rare'
       }
     ]
   }
 ]
 
 const mockLinks: GraphLink[] = [
-  { source: '1', target: '2', relationship: 'queries' },
-  { source: '1', target: '3', relationship: 'uses' },
-  { source: '1', target: '4', relationship: 'accesses' },
-  { source: '2', target: '4', relationship: 'contains' },
-  { source: '3', target: '4', relationship: 'analyzes' },
-  { source: '5', target: '1', relationship: 'monitors' },
-  { source: '5', target: '4', relationship: 'protects' },
-  { source: '6', target: '1', relationship: 'orchestrates' },
-  { source: '6', target: '3', relationship: 'triggers' }
+  // CEO Agent as core node with management relationships to other Agents
+  { source: '1', target: '2', relationship: 'manages' },
+  { source: '1', target: '3', relationship: 'coordinates' },
+  { source: '1', target: '4', relationship: 'oversees' },
+
+  // HR Agent collaboration relationships
+  { source: '2', target: '5', relationship: 'queries' },
+  { source: '2', target: '7', relationship: 'accesses' },
+  { source: '2', target: '8', relationship: 'uses' },
+  { source: '2', target: '4', relationship: 'collaborates' },
+
+  // Tech Lead Agent technical assessment relationships
+  { source: '3', target: '5', relationship: 'references' },
+  { source: '3', target: '7', relationship: 'evaluates' },
+  { source: '3', target: '8', relationship: 'conducts' },
+  { source: '3', target: '6', relationship: 'utilizes' },
+
+  // Background Check Agent investigation relationships
+  { source: '4', target: '7', relationship: 'investigates' },
+  { source: '4', target: '6', relationship: 'analyzes' },
+
+  // Knowledge base and database support relationships
+  { source: '5', target: '6', relationship: 'feeds' },
+  { source: '5', target: '7', relationship: 'enriches' },
+
+  // Interview system and data relationships
+  { source: '8', target: '7', relationship: 'records' },
+  { source: '8', target: '6', relationship: 'generates' },
+
+  // Security Agent monitoring relationships
+  { source: '9', target: '1', relationship: 'protects' },
+  { source: '9', target: '7', relationship: 'secures' },
+  { source: '9', target: '8', relationship: 'monitors' }
 ]
 
 // Node type color mapping

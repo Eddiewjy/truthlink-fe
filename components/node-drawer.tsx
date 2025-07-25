@@ -1,10 +1,13 @@
 'use client'
 
-import React from 'react'
-import { X } from 'lucide-react'
+import React, { useState } from 'react'
+import { X, MessageCircle, Eye, Edit } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { GraphNode } from './knowledge-graph'
+import { ChatDialog } from './chat-dialog'
+import { AgentProcessVisualization } from './agent-process-visualization'
 
 interface NodeDrawerProps {
   node: GraphNode | null
@@ -60,7 +63,12 @@ const getRarityColor = (rarity: string) => {
 }
 
 export const NodeDrawer: React.FC<NodeDrawerProps> = ({ node, onClose }) => {
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [isProcessVisible, setIsProcessVisible] = useState(false)
+
   if (!node) return null
+
+  const isAgent = node.type === 'agent'
 
   return (
     <>
@@ -190,15 +198,62 @@ export const NodeDrawer: React.FC<NodeDrawerProps> = ({ node, onClose }) => {
 
           {/* Action buttons */}
           <div className="space-y-3 pt-4 border-t border-gray-700">
-            <button className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-              View Details
-            </button>
-            <button className="w-full py-3 px-4 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors">
-              Edit Node
-            </button>
+            {isAgent && (
+              <>
+                <Button
+                  onClick={() => setIsChatOpen(true)}
+                  className="w-full bg-cyan-600 hover:bg-cyan-700 text-white flex items-center justify-center space-x-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Start Chat</span>
+                </Button>
+                <Button
+                  onClick={() => setIsProcessVisible(true)}
+                  variant="outline"
+                  className="w-full border-gray-600 text-white hover:bg-gray-700 flex items-center justify-center space-x-2"
+                >
+                  <Eye className="w-4 h-4" />
+                  <span>View Process</span>
+                </Button>
+              </>
+            )}
+            <Button
+              variant="outline"
+              className="w-full border-gray-600 text-white hover:bg-gray-700 flex items-center justify-center space-x-2"
+            >
+              <Eye className="w-4 h-4" />
+              <span>View Details</span>
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full border-gray-600 text-white hover:bg-gray-700 flex items-center justify-center space-x-2"
+            >
+              <Edit className="w-4 h-4" />
+              <span>Edit Node</span>
+            </Button>
           </div>
         </div>
       </div>
+
+      {/* Chat Dialog */}
+      {isAgent && (
+        <ChatDialog
+          isOpen={isChatOpen}
+          onClose={() => setIsChatOpen(false)}
+          agentName={node.label}
+          agentType={node.type}
+        />
+      )}
+
+      {/* Agent Process Visualization */}
+      {isAgent && (
+        <AgentProcessVisualization
+          isVisible={isProcessVisible}
+          agentName={node.label}
+          processType="interview-check"
+          onClose={() => setIsProcessVisible(false)}
+        />
+      )}
     </>
   )
 }
