@@ -211,11 +211,7 @@ export default function UserDashboard() {
             className="lg:col-span-2"
           >
             <div className="grid gap-6">
-              <h2 className="text-2xl font-bold text-white mb-4">
-                Experience Modules
-              </h2>
-
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {modules.map((module, index) => (
                   <motion.div
                     key={module.title}

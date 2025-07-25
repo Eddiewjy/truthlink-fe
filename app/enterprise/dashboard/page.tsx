@@ -51,50 +51,50 @@ export default function EnterpriseDashboard() {
           transition={{ delay: 0.1 }}
           className="grid md:grid-cols-4 gap-6 mb-8"
         >
-          <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-green-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-green-800/40 transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-300 text-sm">Total Verifications</p>
                   <p className="text-2xl font-bold text-white">1,247</p>
                 </div>
-                <FileCheck className="h-8 w-8 text-green-400" />
+                <FileCheck className="h-8 w-8 text-green-400 drop-shadow-lg" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-blue-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-blue-800/40 transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-300 text-sm">Pending Requests</p>
                   <p className="text-2xl font-bold text-white">23</p>
                 </div>
-                <Clock className="h-8 w-8 text-green-400" />
+                <Clock className="h-8 w-8 text-blue-400 drop-shadow-lg" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-emerald-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-emerald-800/40 transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-300 text-sm">Completed Today</p>
                   <p className="text-2xl font-bold text-white">18</p>
                 </div>
-                <CheckCircle className="h-8 w-8 text-green-500" />
+                <CheckCircle className="h-8 w-8 text-emerald-400 drop-shadow-lg" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
+          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-purple-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-purple-800/40 transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-300 text-sm">Success Rate</p>
                   <p className="text-2xl font-bold text-white">94.2%</p>
                 </div>
-                <Users className="h-8 w-8 text-purple-400" />
+                <Users className="h-8 w-8 text-purple-400 drop-shadow-lg" />
               </div>
             </CardContent>
           </Card>
@@ -106,24 +106,24 @@ export default function EnterpriseDashboard() {
           transition={{ delay: 0.2 }}
         >
           <Tabs defaultValue="search" className="space-y-6">
-            <TabsList className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
+            <TabsList className="bg-gradient-to-r from-gray-900/90 via-gray-800/80 to-gray-900/90 border-gray-700/50 backdrop-blur-sm">
               <TabsTrigger
                 value="search"
-                className="data-[state=active]:bg-green-600 data-[state=active]:text-white"
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-green-500 data-[state=active]:text-white transition-all duration-300"
               >
                 <Search className="w-4 h-4 mr-2" />
                 Search & Verify
               </TabsTrigger>
               <TabsTrigger
                 value="requests"
-                className="data-[state=active]:bg-green-600 data-[state=active]:text-white"
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-green-500 data-[state=active]:text-white transition-all duration-300"
               >
                 <Clock className="w-4 h-4 mr-2" />
                 Pending Requests
               </TabsTrigger>
               <TabsTrigger
                 value="completed"
-                className="data-[state=active]:bg-green-600 data-[state=active]:text-white"
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-green-500 data-[state=active]:text-white transition-all duration-300"
               >
                 <CheckCircle className="w-4 h-4 mr-2" />
                 Completed
@@ -131,9 +131,9 @@ export default function EnterpriseDashboard() {
             </TabsList>
 
             <TabsContent value="search" className="space-y-6">
-              <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-white">
+              <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-gray-900/70 border-gray-700/50 backdrop-blur-sm shadow-2xl">
+                <CardHeader className="bg-gradient-to-r from-transparent via-gray-800/30 to-transparent">
+                  <CardTitle className="text-white bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
                     Background Verification Search
                   </CardTitle>
                   <CardDescription className="text-gray-300">
@@ -148,7 +148,7 @@ export default function EnterpriseDashboard() {
                         className="bg-gray-800/50 border-gray-600/50 text-white placeholder:text-gray-400"
                       />
                     </div>
-                    <Button className="bg-green-600 hover:bg-green-700 text-white">
+                    <Button className="bg-gradient-to-r from-green-600 via-green-500 to-green-600 hover:from-green-700 hover:via-green-600 hover:to-green-700 text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300">
                       <Search className="w-4 h-4 mr-2" />
                       Search
                     </Button>
@@ -162,7 +162,7 @@ export default function EnterpriseDashboard() {
                   </div>
 
                   <div className="space-y-4">
-                    <div className="border border-gray-700/50 bg-gray-800/30 rounded-lg p-4">
+                    <div className="border border-gray-700/50 bg-gradient-to-r from-gray-800/40 via-gray-800/30 to-gray-800/40 rounded-lg p-4 hover:from-gray-700/50 hover:via-gray-700/40 hover:to-gray-700/50 transition-all duration-300">
                       <div className="flex justify-between items-start mb-3">
                         <div>
                           <h3 className="text-white font-semibold">John Doe</h3>
@@ -175,7 +175,7 @@ export default function EnterpriseDashboard() {
                         </div>
                         <Badge
                           variant="outline"
-                          className="border-green-500/50 text-green-300 bg-green-500/10"
+                          className="border-green-500/50 text-green-300 bg-gradient-to-r from-green-500/10 to-green-400/20"
                         >
                           <CheckCircle className="w-3 h-3 mr-1" />
                           Verified Profile
@@ -184,14 +184,14 @@ export default function EnterpriseDashboard() {
                       <div className="flex space-x-2">
                         <Button
                           size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white"
+                          className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white shadow-md transition-all duration-300"
                         >
                           Request Verification
                         </Button>
                         <Button
                           size="sm"
                           variant="outline"
-                          className="border-gray-600/50 text-gray-300 hover:bg-gray-800/50 bg-transparent"
+                          className="border-gray-600/50 text-gray-300 hover:bg-gradient-to-r hover:from-gray-800/50 hover:to-gray-700/50 bg-transparent transition-all duration-300"
                         >
                           <Eye className="w-4 h-4 mr-1" />
                           View Profile
@@ -199,7 +199,7 @@ export default function EnterpriseDashboard() {
                       </div>
                     </div>
 
-                    <div className="border border-gray-700/50 bg-gray-800/30 rounded-lg p-4">
+                    <div className="border border-gray-700/50 bg-gradient-to-r from-gray-800/40 via-gray-800/30 to-gray-800/40 rounded-lg p-4 hover:from-gray-700/50 hover:via-gray-700/40 hover:to-gray-700/50 transition-all duration-300">
                       <div className="flex justify-between items-start mb-3">
                         <div>
                           <h3 className="text-white font-semibold">
@@ -214,7 +214,7 @@ export default function EnterpriseDashboard() {
                         </div>
                         <Badge
                           variant="outline"
-                          className="border-purple-500/50 text-purple-300 bg-purple-500/10"
+                          className="border-purple-500/50 text-purple-300 bg-gradient-to-r from-purple-500/10 to-purple-400/20"
                         >
                           <Clock className="w-3 h-3 mr-1" />
                           Partial Profile
@@ -223,14 +223,14 @@ export default function EnterpriseDashboard() {
                       <div className="flex space-x-2">
                         <Button
                           size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white"
+                          className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white shadow-md transition-all duration-300"
                         >
                           Request Verification
                         </Button>
                         <Button
                           size="sm"
                           variant="outline"
-                          className="border-gray-600/50 text-gray-300 hover:bg-gray-800/50 bg-transparent"
+                          className="border-gray-600/50 text-gray-300 hover:bg-gradient-to-r hover:from-gray-800/50 hover:to-gray-700/50 bg-transparent transition-all duration-300"
                         >
                           <Eye className="w-4 h-4 mr-1" />
                           View Profile
@@ -243,9 +243,9 @@ export default function EnterpriseDashboard() {
             </TabsContent>
 
             <TabsContent value="requests" className="space-y-6">
-              <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-white">
+              <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-gray-900/70 border-gray-700/50 backdrop-blur-sm shadow-2xl">
+                <CardHeader className="bg-gradient-to-r from-transparent via-gray-800/30 to-transparent">
+                  <CardTitle className="text-white bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
                     Pending Verification Requests
                   </CardTitle>
                   <CardDescription className="text-gray-300">
@@ -317,9 +317,9 @@ export default function EnterpriseDashboard() {
             </TabsContent>
 
             <TabsContent value="completed" className="space-y-6">
-              <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-white">
+              <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-gray-900/70 border-gray-700/50 backdrop-blur-sm shadow-2xl">
+                <CardHeader className="bg-gradient-to-r from-transparent via-gray-800/30 to-transparent">
+                  <CardTitle className="text-white bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
                     Completed Verifications
                   </CardTitle>
                   <CardDescription className="text-gray-300">

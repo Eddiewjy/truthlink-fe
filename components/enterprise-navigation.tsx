@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { Button } from "@/components/ui/button"
-import { Shield, Building2, Search, FileCheck, Settings, LogOut } from "lucide-react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useAuthStore } from "@/lib/store"
+import { motion } from 'framer-motion'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { Button } from '@/components/ui/button'
+import { Shield, Building2, Search, Settings, LogOut } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useAuthStore } from '@/lib/store'
 
 export function EnterpriseNavigation() {
   const router = useRouter()
@@ -15,7 +15,7 @@ export function EnterpriseNavigation() {
   const handleLogout = () => {
     setUserType(null)
     setWalletAddress(null)
-    router.push("/")
+    router.push('/')
   }
 
   return (
@@ -27,10 +27,12 @@ export function EnterpriseNavigation() {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-8"
           >
-            <Link href="/enterprise/dashboard" className="flex items-center space-x-2">
-              <Shield className="h-8 w-8 text-purple-400" />
+            <Link
+              href="/enterprise/dashboard"
+              className="flex items-center space-x-2"
+            >
+              <Shield className="h-8 w-8 text-indigo-400" />
               <span className="text-2xl font-bold text-white">VerifyChain</span>
-              <span className="text-sm text-purple-400">Enterprise</span>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-6">
@@ -47,13 +49,6 @@ export function EnterpriseNavigation() {
               >
                 <Search className="h-4 w-4" />
                 <span>Search</span>
-              </Link>
-              <Link
-                href="/enterprise/reports"
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
-              >
-                <FileCheck className="h-4 w-4" />
-                <span>Reports</span>
               </Link>
               <Link
                 href="/enterprise/settings"
