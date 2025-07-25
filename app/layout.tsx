@@ -9,6 +9,7 @@ import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { WagmiProvider } from 'wagmi'
 import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { AbstraxionProvider } from "@burnt-labs/abstraxion"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,10 @@ const config = getDefaultConfig({
 
 const queryClient = new QueryClient()
 
+const abstraxionConfig = {
+  rpcUrl: "https://rpc.xion-testnet-2.burnt.com:443"
+}
+
 export default function RootLayout({
   children
 }: {
@@ -31,7 +36,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>
-            <RainbowKitProvider>{children}</RainbowKitProvider>
+            <RainbowKitProvider>
+              <AbstraxionProvider config={abstraxionConfig}>
+                {children}
+              </AbstraxionProvider>
+            </RainbowKitProvider>
           </QueryClientProvider>
         </WagmiProvider>
       </body>
