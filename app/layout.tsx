@@ -33,6 +33,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google" content="notranslate" />
+        <meta httpEquiv="Content-Language" content="en" />
+      </head>
       <body className={inter.className}>
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>

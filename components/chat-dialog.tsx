@@ -17,6 +17,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
+import { FileUpload } from '@/components/ui/file-upload'
 
 interface ChatDialogProps {
   isOpen: boolean
@@ -119,20 +120,20 @@ export const ChatDialog: React.FC<ChatDialogProps> = ({
     }
   }
 
-  const handleFileUpload = (type: UploadedFile['type'], file: File) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const newFile: UploadedFile = {
-        type,
-        name: file.name,
-        content: e.target?.result as string
-      }
-      setUploadedFiles((prev) => [
-        ...prev.filter((f) => f.type !== type),
-        newFile
-      ])
+  const handleFileUpload = (
+    type: UploadedFile['type'],
+    file: File,
+    content: string
+  ) => {
+    const newFile: UploadedFile = {
+      type,
+      name: file.name,
+      content
     }
-    reader.readAsText(file)
+    setUploadedFiles((prev) => [
+      ...prev.filter((f) => f.type !== type),
+      newFile
+    ])
   }
 
   const getFileTypeIcon = (type: string) => {
@@ -182,6 +183,7 @@ export const ChatDialog: React.FC<ChatDialogProps> = ({
         <div
           className="bg-[#161b22] rounded-lg border border-gray-700 w-full max-w-4xl h-[80vh] flex flex-col"
           onClick={(e) => e.stopPropagation()}
+          translate="no"
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-700">
@@ -194,8 +196,8 @@ export const ChatDialog: React.FC<ChatDialogProps> = ({
                 <p className="text-sm text-gray-400">AI Assistant • Online</p>
               </div>
             </div>
-            <Button variant="ghost" size="sm" onClick={onClose}>
-              <X className="w-5 h-5" />
+            <Button size="sm" onClick={onClose}>
+              <X className="w-5 h-5 text-white" />
             </Button>
           </div>
 
@@ -302,155 +304,139 @@ export const ChatDialog: React.FC<ChatDialogProps> = ({
             </div>
 
             {/* File Upload Panel */}
-            <div className="w-80 border-l border-gray-700 p-4">
-              <h3 className="text-lg font-semibold text-white mb-4">
-                Upload Materials
-              </h3>
+            <div className="w-80 border-l border-gray-700 flex flex-col">
+              <div className="p-4 border-b border-gray-700">
+                <h3 className="text-lg font-semibold text-white">
+                  Upload Materials
+                </h3>
+              </div>
 
-              <Tabs defaultValue="interview-check" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 bg-gray-800">
-                  <TabsTrigger value="interview-check" className="text-xs">
-                    Check+Eval
-                  </TabsTrigger>
-                  <TabsTrigger value="interview-eval" className="text-xs">
-                    Interview
-                  </TabsTrigger>
-                  <TabsTrigger value="resume-check" className="text-xs">
-                    Resume
-                  </TabsTrigger>
-                </TabsList>
+              <div className="flex-1 overflow-y-auto p-4">
+                <Tabs defaultValue="interview-check" className="w-full">
+                  <TabsList className="grid w-full grid-cols-3 bg-gray-800  top-0 z-10">
+                    <TabsTrigger value="interview-check" className="text-xs">
+                      Check+Eval
+                    </TabsTrigger>
+                    <TabsTrigger value="interview-eval" className="text-xs">
+                      Interview
+                    </TabsTrigger>
+                    <TabsTrigger value="resume-check" className="text-xs">
+                      Resume
+                    </TabsTrigger>
+                  </TabsList>
 
-                <TabsContent value="interview-check" className="space-y-3 mt-4">
-                  <p className="text-sm text-gray-400">
-                    Interview background check + evaluation requires:
-                  </p>
-                  {[
-                    {
-                      type: 'address' as const,
-                      label: 'Address Info',
-                      required: true
-                    },
-                    {
-                      type: 'resume' as const,
-                      label: 'Resume',
-                      required: true
-                    },
-                    {
-                      type: 'interview' as const,
-                      label: 'Interview Record',
-                      required: true
-                    },
-                    {
-                      type: 'jd' as const,
-                      label: 'Job Description',
-                      required: true
-                    }
-                  ].map(({ type, label, required }) => (
-                    <Card key={type} className="bg-gray-800 border-gray-700">
-                      <CardContent className="p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm text-white">{label}</span>
-                          {required && (
-                            <Badge variant="destructive" className="text-xs">
-                              Required
-                            </Badge>
-                          )}
-                        </div>
-                        <Input
-                          type="file"
-                          accept=".txt,.pdf,.doc,.docx"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0]
-                            if (file) handleFileUpload(type, file)
-                          }}
-                          className="bg-gray-700 border-gray-600 text-white text-xs"
-                        />
-                      </CardContent>
-                    </Card>
-                  ))}
-                </TabsContent>
+                  <TabsContent
+                    value="interview-check"
+                    className="space-y-3 mt-4"
+                  >
+                    <p className="text-sm text-gray-400">
+                      Interview background check + evaluation requires:
+                    </p>
+                    {[
+                      {
+                        type: 'address' as const,
+                        label: 'Address Info',
+                        required: true
+                      },
+                      {
+                        type: 'resume' as const,
+                        label: 'Resume',
+                        required: true
+                      },
+                      {
+                        type: 'interview' as const,
+                        label: 'Interview Record',
+                        required: true
+                      },
+                      {
+                        type: 'jd' as const,
+                        label: 'Job Description',
+                        required: true
+                      }
+                    ].map(({ type, label, required }) => (
+                      <FileUpload
+                        key={type}
+                        label={label}
+                        required={required}
+                        onFileSelect={(file, content) =>
+                          handleFileUpload(type, file, content)
+                        }
+                        currentFile={
+                          uploadedFiles.find((f) => f.type === type)?.name
+                        }
+                      />
+                    ))}
+                  </TabsContent>
 
-                <TabsContent value="interview-eval" className="space-y-3 mt-4">
-                  <p className="text-sm text-gray-400">
-                    Interview evaluation requires:
-                  </p>
-                  {[
-                    {
-                      type: 'resume' as const,
-                      label: 'Resume',
-                      required: true
-                    },
-                    {
-                      type: 'interview' as const,
-                      label: 'Interview Record',
-                      required: true
-                    },
-                    {
-                      type: 'jd' as const,
-                      label: 'Job Description',
-                      required: true
-                    }
-                  ].map(({ type, label, required }) => (
-                    <Card key={type} className="bg-gray-800 border-gray-700">
-                      <CardContent className="p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm text-white">{label}</span>
-                          {required && (
-                            <Badge variant="destructive" className="text-xs">
-                              Required
-                            </Badge>
-                          )}
-                        </div>
-                        <Input
-                          type="file"
-                          accept=".txt,.pdf,.doc,.docx"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0]
-                            if (file) handleFileUpload(type, file)
-                          }}
-                          className="bg-gray-700 border-gray-600 text-white text-xs"
-                        />
-                      </CardContent>
-                    </Card>
-                  ))}
-                </TabsContent>
+                  <TabsContent
+                    value="interview-eval"
+                    className="space-y-3 mt-4"
+                  >
+                    <p className="text-sm text-gray-400">
+                      Interview evaluation requires:
+                    </p>
+                    {[
+                      {
+                        type: 'resume' as const,
+                        label: 'Resume',
+                        required: true
+                      },
+                      {
+                        type: 'interview' as const,
+                        label: 'Interview Record',
+                        required: true
+                      },
+                      {
+                        type: 'jd' as const,
+                        label: 'Job Description',
+                        required: true
+                      }
+                    ].map(({ type, label, required }) => (
+                      <FileUpload
+                        key={type}
+                        label={label}
+                        required={required}
+                        onFileSelect={(file, content) =>
+                          handleFileUpload(type, file, content)
+                        }
+                        currentFile={
+                          uploadedFiles.find((f) => f.type === type)?.name
+                        }
+                      />
+                    ))}
+                  </TabsContent>
 
-                <TabsContent value="resume-check" className="space-y-3 mt-4">
-                  <p className="text-sm text-gray-400">
-                    Resume background check requires:
-                  </p>
-                  {[
-                    {
-                      type: 'address' as const,
-                      label: 'Address Info',
-                      required: true
-                    },
-                    { type: 'resume' as const, label: 'Resume', required: true }
-                  ].map(({ type, label, required }) => (
-                    <Card key={type} className="bg-gray-800 border-gray-700">
-                      <CardContent className="p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm text-white">{label}</span>
-                          {required && (
-                            <Badge variant="destructive" className="text-xs">
-                              Required
-                            </Badge>
-                          )}
-                        </div>
-                        <Input
-                          type="file"
-                          accept=".txt,.pdf,.doc,.docx"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0]
-                            if (file) handleFileUpload(type, file)
-                          }}
-                          className="bg-gray-700 border-gray-600 text-white text-xs"
-                        />
-                      </CardContent>
-                    </Card>
-                  ))}
-                </TabsContent>
-              </Tabs>
+                  <TabsContent value="resume-check" className="space-y-3 mt-4">
+                    <p className="text-sm text-gray-400">
+                      Resume background check requires:
+                    </p>
+                    {[
+                      {
+                        type: 'address' as const,
+                        label: 'Address Info',
+                        required: true
+                      },
+                      {
+                        type: 'resume' as const,
+                        label: 'Resume',
+                        required: true
+                      }
+                    ].map(({ type, label, required }) => (
+                      <FileUpload
+                        key={type}
+                        label={label}
+                        required={required}
+                        onFileSelect={(file, content) =>
+                          handleFileUpload(type, file, content)
+                        }
+                        currentFile={
+                          uploadedFiles.find((f) => f.type === type)?.name
+                        }
+                      />
+                    ))}
+                  </TabsContent>
+                </Tabs>
+              </div>
             </div>
           </div>
         </div>

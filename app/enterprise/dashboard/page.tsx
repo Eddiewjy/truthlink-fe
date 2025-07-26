@@ -37,84 +37,13 @@ export default function EnterpriseDashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Enterprise Dashboard
-          </h1>
-          <p className="text-gray-400">
-            Conduct secure background verifications
-          </p>
-        </motion.div>
-
-        {/* Stats Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="grid md:grid-cols-4 gap-6 mb-8"
-        >
-          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-green-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-green-800/40 transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-300 text-sm">Total Verifications</p>
-                  <p className="text-2xl font-bold text-white">1,247</p>
-                </div>
-                <FileCheck className="h-8 w-8 text-green-400 drop-shadow-lg" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-blue-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-blue-800/40 transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-300 text-sm">Pending Requests</p>
-                  <p className="text-2xl font-bold text-white">23</p>
-                </div>
-                <Clock className="h-8 w-8 text-blue-400 drop-shadow-lg" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-emerald-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-emerald-800/40 transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-300 text-sm">Completed Today</p>
-                  <p className="text-2xl font-bold text-white">18</p>
-                </div>
-                <CheckCircle className="h-8 w-8 text-emerald-400 drop-shadow-lg" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-purple-900/30 border-gray-700/50 backdrop-blur-sm hover:from-gray-800/90 hover:to-purple-800/40 transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-300 text-sm">Success Rate</p>
-                  <p className="text-2xl font-bold text-white">94.2%</p>
-                </div>
-                <Users className="h-8 w-8 text-purple-400 drop-shadow-lg" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        {/* NFT Mint Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-          className="mb-8"
-        >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-xl font-semibold text-white mb-1">
-                Work Experience Certificates
-              </h2>
-              <p className="text-gray-400 text-sm">
-                Issue blockchain-verified work experience NFTs for candidates
+              <h1 className="text-3xl font-bold text-white mb-2">
+                Enterprise Dashboard
+              </h1>
+              <p className="text-gray-400">
+                Conduct secure background verifications
               </p>
             </div>
             <NFTMintDialog />

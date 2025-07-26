@@ -37,15 +37,16 @@ interface KnowledgeGraphProps {
 const mockNodes: GraphNode[] = [
   {
     id: '1',
-    label: 'CEO Agent',
+    label: 'TrueLink CEO Agent',
     type: 'agent',
     detail:
-      'CEO-level AI assistant responsible for executive decision support, talent strategy planning, and enterprise management consulting. Equipped with comprehensive business insights and leadership analysis capabilities.',
+      'TrueLink CEO Agent responsible for requirement confirmation, workload assessment, pricing, and work list generation. Coordinates A2A communication with other agents through JSON file mode.',
     tags: [
-      'Strategic Decision',
-      'Talent Management',
-      'Business Insights',
-      'Leadership Assessment'
+      'Requirement Confirmation',
+      'Workload Assessment',
+      'Pricing',
+      'Work List Generation',
+      'A2A Communication'
     ],
     nfts: [
       {
@@ -64,20 +65,20 @@ const mockNodes: GraphNode[] = [
   },
   {
     id: '2',
-    label: 'HR Agent',
+    label: 'NFTMatch Agent',
     type: 'agent',
     detail:
-      'HR professional AI assistant specializing in recruitment evaluation, interview analysis, background checks, and talent assessment. Equipped with deep talent identification and evaluation capabilities.',
+      'NFTMatch Agent receives wallet addresses, fetches NFT data from XION blockchain, and generates JSON files containing NFT information for verification purposes.',
     tags: [
-      'Recruitment Evaluation',
-      'Interview Analysis',
-      'Background Check',
-      'Talent Assessment'
+      'Wallet Address Processing',
+      'XION Blockchain Integration',
+      'NFT Data Fetching',
+      'JSON File Generation'
     ],
     nfts: [
       {
         id: 'n3',
-        name: 'HR Expert NFT',
+        name: 'NFT Matcher NFT',
         image: '/api/placeholder/64/64',
         rarity: 'Epic'
       }
@@ -85,20 +86,20 @@ const mockNodes: GraphNode[] = [
   },
   {
     id: '3',
-    label: 'Tech Lead Agent',
+    label: 'Transfer Agent',
     type: 'agent',
     detail:
-      'Technical leadership AI assistant responsible for technical capability assessment, code review, architecture design evaluation, and technical interview guidance.',
+      'Transfer Agent converts Word documents and PDF files into structured JSON format for processing by other agents in the TrueLink system.',
     tags: [
-      'Technical Assessment',
-      'Code Review',
-      'Architecture Design',
-      'Technical Interview'
+      'Document Conversion',
+      'Word Processing',
+      'PDF Processing',
+      'JSON Transformation'
     ],
     nfts: [
       {
         id: 'n4',
-        name: 'Tech Lead Badge',
+        name: 'Transfer Badge',
         image: '/api/placeholder/64/64',
         rarity: 'Rare'
       }
@@ -106,15 +107,15 @@ const mockNodes: GraphNode[] = [
   },
   {
     id: '4',
-    label: 'Background Check Agent',
+    label: 'ResumeCheck Agent',
     type: 'agent',
     detail:
-      'Background check specialist AI assistant responsible for candidate identity verification, resume validation, credit checks, and risk assessment.',
+      'ResumeCheck Agent obtains NFT experience information and resume JSON files, compares content for fraud detection, and generates authenticity evaluation reports.',
     tags: [
-      'Identity Verification',
+      'NFT Experience Verification',
       'Resume Validation',
-      'Credit Check',
-      'Risk Assessment'
+      'Fraud Detection',
+      'Authenticity Evaluation'
     ],
     nfts: [
       {
@@ -127,20 +128,20 @@ const mockNodes: GraphNode[] = [
   },
   {
     id: '5',
-    label: 'Knowledge Base',
-    type: 'knowledge',
+    label: 'InterviewCheck Agent',
+    type: 'agent',
     detail:
-      'Enterprise knowledge base containing structured and unstructured knowledge including job descriptions, interview standards, evaluation frameworks, industry standards, and best practices.',
+      'InterviewCheck Agent processes job descriptions, interview record JSON files, and resume JSON files to generate comprehensive interview evaluations and assessments.',
     tags: [
-      'Job Knowledge',
-      'Interview Standards',
-      'Evaluation Framework',
-      'Industry Standards'
+      'Job Description Analysis',
+      'Interview Record Processing',
+      'Resume Analysis',
+      'Interview Evaluation'
     ],
     nfts: [
       {
         id: 'n6',
-        name: 'Knowledge Gem',
+        name: 'Interview Evaluator NFT',
         image: '/api/placeholder/64/64',
         rarity: 'Legendary'
       }
@@ -148,117 +149,53 @@ const mockNodes: GraphNode[] = [
   },
   {
     id: '6',
-    label: 'Analytics Engine',
-    type: 'tool',
+    label: 'Audit Agent',
+    type: 'agent',
     detail:
-      'Data analytics engine providing real-time data processing, visualization chart generation, statistical analysis, and predictive modeling capabilities.',
+      'Audit Agent provides neutral review of all AI actions, audits the entire process, and determines whether users can successfully complete payment based on service quality.',
     tags: [
-      'Data Analysis',
-      'Visualization',
-      'Statistical Modeling',
-      'Predictive Algorithms'
+      'Neutral Review',
+      'AI Action Auditing',
+      'Process Validation',
+      'Payment Authorization'
     ],
     nfts: [
       {
         id: 'n7',
-        name: 'Analytics Core',
+        name: 'Audit Core',
         image: '/api/placeholder/64/64',
         rarity: 'Rare'
-      }
-    ]
-  },
-  {
-    id: '7',
-    label: 'Candidate Database',
-    type: 'data',
-    detail:
-      'Candidate database containing multi-dimensional candidate data including resume information, interview records, assessment results, and background check reports.',
-    tags: [
-      'Resume Data',
-      'Interview Records',
-      'Assessment Results',
-      'Background Reports'
-    ],
-    nfts: []
-  },
-  {
-    id: '8',
-    label: 'Interview System',
-    type: 'tool',
-    detail:
-      'Intelligent interview system supporting online interviews, audio/video recording, real-time assessment, question recommendations, and interview process management.',
-    tags: [
-      'Online Interview',
-      'Real-time Assessment',
-      'Process Management',
-      'Question Bank'
-    ],
-    nfts: [
-      {
-        id: 'n8',
-        name: 'Interview Token',
-        image: '/api/placeholder/64/64',
-        rarity: 'Common'
-      }
-    ]
-  },
-  {
-    id: '9',
-    label: 'Security Agent',
-    type: 'agent',
-    detail:
-      'Security monitoring AI assistant responsible for real-time anomaly detection, threat identification, data security, and automated response handling.',
-    tags: [
-      'Security Monitoring',
-      'Threat Detection',
-      'Data Protection',
-      'Automated Response'
-    ],
-    nfts: [
-      {
-        id: 'n9',
-        name: 'Security Shield',
-        image: '/api/placeholder/64/64',
-        rarity: 'Epic'
       }
     ]
   }
 ]
 
 const mockLinks: GraphLink[] = [
-  // CEO Agent as core node with management relationships to other Agents
-  { source: '1', target: '2', relationship: 'manages' },
-  { source: '1', target: '3', relationship: 'coordinates' },
+  // TrueLink CEO Agent data transmission to key agents
+  { source: '1', target: '2', relationship: 'sends_wallet_requirements' },
+  { source: '1', target: '3', relationship: 'sends_documents' },
+  { source: '1', target: '5', relationship: 'sends_interview_tasks' },
+
+  // Other workflow connections
   { source: '1', target: '4', relationship: 'oversees' },
+  { source: '1', target: '6', relationship: 'coordinates_audit' },
 
-  // HR Agent collaboration relationships
-  { source: '2', target: '5', relationship: 'queries' },
-  { source: '2', target: '7', relationship: 'accesses' },
-  { source: '2', target: '8', relationship: 'uses' },
-  { source: '2', target: '4', relationship: 'collaborates' },
+  // NFTMatch Agent data flow
+  { source: '2', target: '4', relationship: 'provides_nft_data' },
 
-  // Tech Lead Agent technical assessment relationships
-  { source: '3', target: '5', relationship: 'references' },
-  { source: '3', target: '7', relationship: 'evaluates' },
-  { source: '3', target: '8', relationship: 'conducts' },
-  { source: '3', target: '6', relationship: 'utilizes' },
+  // Transfer Agent document processing
+  { source: '3', target: '4', relationship: 'provides_resume_json' },
+  { source: '3', target: '5', relationship: 'provides_documents' },
 
-  // Background Check Agent investigation relationships
-  { source: '4', target: '7', relationship: 'investigates' },
-  { source: '4', target: '6', relationship: 'analyzes' },
+  // ResumeCheck Agent verification process
+  { source: '4', target: '5', relationship: 'shares_validation' },
+  { source: '4', target: '6', relationship: 'reports_to' },
 
-  // Knowledge base and database support relationships
-  { source: '5', target: '6', relationship: 'feeds' },
-  { source: '5', target: '7', relationship: 'enriches' },
+  // InterviewCheck Agent evaluation
+  { source: '5', target: '6', relationship: 'submits_evaluation' },
 
-  // Interview system and data relationships
-  { source: '8', target: '7', relationship: 'records' },
-  { source: '8', target: '6', relationship: 'generates' },
-
-  // Security Agent monitoring relationships
-  { source: '9', target: '1', relationship: 'protects' },
-  { source: '9', target: '7', relationship: 'secures' },
-  { source: '9', target: '8', relationship: 'monitors' }
+  // Audit Agent final review
+  { source: '6', target: '1', relationship: 'reports_audit' }
 ]
 
 // Node type color mapping
@@ -326,23 +263,99 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
         d3
           .forceLink<GraphNode, GraphLink>(mockLinks)
           .id((d) => d.id)
-          .distance(150)
+          .distance((d) => {
+            // Special longer distance for audit agent connections
+            if (
+              (d.source === '6' && d.target === '1') ||
+              (d.source === '1' && d.target === '6') ||
+              d.target === '6' ||
+              d.source === '6'
+            ) {
+              return 400
+            }
+            return 300
+          })
       )
-      .force('charge', d3.forceManyBody().strength(-800))
+      .force('charge', d3.forceManyBody().strength(-1200))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide().radius(40))
+      .force(
+        'collision',
+        d3.forceCollide().radius((d: any) => {
+          // CEO Agent needs more collision space
+          return d.id === '1' ? 70 : 60
+        })
+      )
 
     simulationRef.current = simulation
 
-    // Create links
+    // Create arrow markers
+    const defs = svg.append('defs')
+
+    // CEO Agent arrow marker (special color)
+    defs
+      .append('marker')
+      .attr('id', 'ceo-arrow')
+      .attr('viewBox', '0 -3 8 6')
+      .attr('refX', 20) // 调整这个值来改变箭头距离节点的远近
+      .attr('refY', 0) // 调整这个值来改变箭头的垂直偏移
+      .attr('markerWidth', 6)
+      .attr('markerHeight', 6)
+      .attr('orient', 'auto')
+      .append('path')
+      .attr('d', 'M0,-3L8,0L0,3')
+      .attr('fill', '#FFD700')
+      .attr('stroke', '#FFD700')
+
+    // Regular arrow marker
+    defs
+      .append('marker')
+      .attr('id', 'regular-arrow')
+      .attr('viewBox', '0 -3 8 6')
+      .attr('refX', 30) // 调整这个值来改变箭头距离节点的远近
+      .attr('refY', 0) // 调整这个值来改变箭头的垂直偏移
+      .attr('markerWidth', 6)
+      .attr('markerHeight', 6)
+      .attr('orient', 'auto')
+      .append('path')
+      .attr('d', 'M0,-3L8,0L0,3')
+      .attr('fill', '#00FF88')
+      .attr('stroke', '#00FF88')
+
+    // Create links with different styles
     const links = container
       .append('g')
       .selectAll('line')
       .data(mockLinks)
       .join('line')
-      .attr('stroke', '#30363d')
-      .attr('stroke-width', 2)
-      .attr('stroke-opacity', 0.6)
+      .attr('stroke', (d) => {
+        // CEO Agent outgoing links get special color
+        if (d.source === '1' && ['2', '3', '5'].includes(d.target as string)) {
+          return '#FFD700'
+        }
+        return '#00FF88'
+      })
+      .attr('stroke-width', (d) => {
+        // CEO Agent outgoing links get thicker stroke
+        if (d.source === '1' && ['2', '3', '5'].includes(d.target as string)) {
+          return 3
+        }
+        // Special distance for audit agent
+        if (
+          (d.source === '6' && d.target === '1') ||
+          (d.source === '1' && d.target === '6')
+        ) {
+          return 2
+        }
+        return 2
+      })
+      .attr('stroke-opacity', 0.8)
+      .attr('marker-end', (d) => {
+        // CEO Agent outgoing links get special arrow
+        if (d.source === '1' && ['2', '3', '5'].includes(d.target as string)) {
+          return 'url(#ceo-arrow)'
+        }
+        return 'url(#regular-arrow)'
+      })
 
     // Create node groups
     const nodes = container
@@ -373,27 +386,53 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
     // Node circles
     nodes
       .append('circle')
-      .attr('r', 25)
-      .attr('fill', (d) => nodeColors[d.type])
-      .attr('stroke', (d) => nodeColors[d.type])
-      .attr('stroke-width', 3)
+      .attr('r', (d) => {
+        // CEO Agent gets larger radius
+        return d.id === '1' ? 35 : 25
+      })
+      .attr('fill', (d) => {
+        // Different colors for different agents
+        switch (d.id) {
+          case '1':
+            return '#1a1a2e' // CEO - Dark navy background for better emoji contrast
+          case '2':
+            return '#FF6B6B' // NFTMatch - Red
+          case '3':
+            return '#4ECDC4' // Transfer - Teal
+          case '4':
+            return '#45B7D1' // ResumeCheck - Blue
+          case '5':
+            return '#96CEB4' // InterviewCheck - Green
+          case '6':
+            return '#FFEAA7' // Audit - Light Yellow
+          default:
+            return '#00D9FF'
+        }
+      })
+      .attr('stroke', (d) => {
+        // Matching stroke colors
+        switch (d.id) {
+          case '1':
+            return '#FFD700' // CEO - Gold stroke for contrast
+          case '2':
+            return '#FF6B6B'
+          case '3':
+            return '#4ECDC4'
+          case '4':
+            return '#45B7D1'
+          case '5':
+            return '#96CEB4'
+          case '6':
+            return '#FFEAA7'
+          default:
+            return '#00D9FF'
+        }
+      })
+      .attr('stroke-width', (d) => {
+        // CEO Agent gets thicker stroke
+        return d.id === '1' ? 4 : 3
+      })
       .attr('fill-opacity', 0.8)
-      .on('mouseenter', (event, d) => {
-        handleNodeHover(d, event)
-        d3.select(event.currentTarget)
-          .transition()
-          .duration(200)
-          .attr('r', 30)
-          .attr('fill-opacity', 1)
-      })
-      .on('mouseleave', (event, d) => {
-        handleNodeHover(null)
-        d3.select(event.currentTarget)
-          .transition()
-          .duration(200)
-          .attr('r', 25)
-          .attr('fill-opacity', 0.8)
-      })
       .on('click', (event, d) => {
         event.stopPropagation()
         handleNodeClick(d)
@@ -415,22 +454,30 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
     nodes
       .append('text')
       .text((d) => {
-        switch (d.type) {
-          case 'agent':
-            return '🤖'
-          case 'knowledge':
-            return '📚'
-          case 'tool':
-            return '🔧'
-          case 'data':
-            return '💾'
+        // Different emojis for different agents
+        switch (d.id) {
+          case '1':
+            return '👑' // CEO - Crown
+          case '2':
+            return '🔗' // NFTMatch - Link
+          case '3':
+            return '📄' // Transfer - Document
+          case '4':
+            return '🔍' // ResumeCheck - Magnifying glass
+          case '5':
+            return '💬' // InterviewCheck - Speech bubble
+          case '6':
+            return '⚖️' // Audit - Balance scale
           default:
-            return '⭕'
+            return '🤖'
         }
       })
       .attr('text-anchor', 'middle')
       .attr('dy', 6)
-      .attr('font-size', '16px')
+      .attr('font-size', (d) => {
+        // CEO Agent gets larger emoji
+        return d.id === '1' ? '20px' : '16px'
+      })
       .style('pointer-events', 'none')
 
     // Simulation update
