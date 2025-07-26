@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { AbstraxionConnectButton } from './abstraxion-connect-button'
 import { Button } from '@/components/ui/button'
-import { Shield, User, FileText, Settings, LogOut } from 'lucide-react'
+import { Shield, User, FileText, Settings, LogOut, Award } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/lib/store'
@@ -42,6 +42,13 @@ export function UserNavigation() {
               >
                 <User className="h-4 w-4" />
                 <span>Dashboard</span>
+              </Link>
+              <Link
+                href="/user/nft-tools"
+                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors"
+              >
+                <Award className="h-4 w-4" />
+                <span>NFT Tools</span>
               </Link>
             </nav>
           </motion.div>

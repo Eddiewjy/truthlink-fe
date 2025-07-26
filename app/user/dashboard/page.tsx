@@ -22,6 +22,8 @@ import {
 } from 'lucide-react'
 import { useAuthStore } from '@/lib/store'
 import { UserNavigation } from '@/components/user-navigation'
+import { NFTViewer } from '@/components/nft-viewer'
+import { IPFSReader } from '@/components/ipfs-reader'
 import Link from 'next/link'
 
 export default function UserDashboard() {
@@ -61,6 +63,14 @@ export default function UserDashboard() {
       href: '/user/project-experience',
       color: 'from-purple-500 to-purple-600',
       count: 7
+    },
+    {
+      title: 'NFT Tools',
+      description: 'NFT Query & IPFS Reader',
+      icon: Award,
+      href: '/user/nft-tools',
+      color: 'from-yellow-500 to-orange-600',
+      count: 'Tools'
     }
   ]
 
@@ -151,6 +161,15 @@ export default function UserDashboard() {
               </CardHeader>
             </Card>
 
+            {/* NFT查询组件 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <NFTViewer defaultWallet={walletAddress || undefined} />
+            </motion.div>
+
             {/* 最近获得的NFT卡片 */}
             <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
               <CardHeader>
@@ -210,6 +229,15 @@ export default function UserDashboard() {
             className="lg:col-span-2"
           >
             <div className="grid gap-6">
+              {/* IPFS Reader组件 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+              >
+                <IPFSReader />
+              </motion.div>
+
               <div className="grid grid-cols-1 gap-6">
                 {modules.map((module, index) => (
                   <motion.div
@@ -232,7 +260,9 @@ export default function UserDashboard() {
                                 variant="secondary"
                                 className="bg-blue-500/20 text-blue-300 border-blue-500/30"
                               >
-                                {module.count} items
+                                {typeof module.count === 'number'
+                                  ? `${module.count} items`
+                                  : module.count}
                               </Badge>
                               <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
                             </div>

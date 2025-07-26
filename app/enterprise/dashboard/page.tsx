@@ -24,7 +24,7 @@ import {
   Eye
 } from 'lucide-react'
 import { EnterpriseNavigation } from '@/components/enterprise-navigation'
-import NFTMintDialog from '@/components/nft-mint-dialog'
+import MintWorkNFT from '@/components/mint-work-nft'
 
 export default function EnterpriseDashboard() {
   return (
@@ -46,7 +46,7 @@ export default function EnterpriseDashboard() {
                 Conduct secure background verifications
               </p>
             </div>
-            <NFTMintDialog />
+            <MintWorkNFT />
           </div>
         </motion.div>
 
