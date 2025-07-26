@@ -120,70 +120,56 @@ export default function HomePage() {
             </span>
           </motion.p>
 
-          {!account?.bech32Address ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="mb-16"
-            >
-              <p className="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-500 mb-4">
-                Connect your wallet to get started
-              </p>
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16"
-            >
-              <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all cursor-pointer group">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4 p-3 rounded-full bg-green-500/20 w-fit group-hover:bg-green-500/30 transition-colors">
-                    <Users className="h-8 w-8 text-green-400" />
-                  </div>
-                  <CardTitle className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-500">
-                    Individual User
-                  </CardTitle>
-                  <CardDescription className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400">
-                    Manage your professional profile and control your privacy
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => handleUserTypeSelection('user')}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white"
-                  >
-                    Continue as User
-                  </Button>
-                </CardContent>
-              </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16"
+          >
+            <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all cursor-pointer group">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-4 p-3 rounded-full bg-green-500/20 w-fit group-hover:bg-green-500/30 transition-colors">
+                  <Users className="h-8 w-8 text-green-400" />
+                </div>
+                <CardTitle className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-500">
+                  Individual User
+                </CardTitle>
+                <CardDescription className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400">
+                  Manage your professional profile and control your privacy
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => handleUserTypeSelection('user')}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+                >
+                  Continue as User
+                </Button>
+              </CardContent>
+            </Card>
 
-              <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all cursor-pointer group">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4 p-3 rounded-full bg-purple-500/20 w-fit group-hover:bg-purple-500/30 transition-colors">
-                    <Building2 className="h-8 w-8 text-purple-400" />
-                  </div>
-                  <CardTitle className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500">
-                    Enterprise
-                  </CardTitle>
-                  <CardDescription className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400">
-                    Conduct secure recruitment verifications for your
-                    organization
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => handleUserTypeSelection('enterprise')}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-                  >
-                    Continue as Enterprise
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
+            <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/70 transition-all cursor-pointer group">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-4 p-3 rounded-full bg-purple-500/20 w-fit group-hover:bg-purple-500/30 transition-colors">
+                  <Building2 className="h-8 w-8 text-purple-400" />
+                </div>
+                <CardTitle className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-500">
+                  Enterprise
+                </CardTitle>
+                <CardDescription className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400">
+                  Conduct secure recruitment verifications for your organization
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => handleUserTypeSelection('enterprise')}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                >
+                  Continue as Enterprise
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -47,11 +47,11 @@ interface NFTViewerProps {
   defaultWallet?: string
 }
 
-export function NFTViewer({ defaultWallet }: NFTViewerProps) {
+export function NFTViewer({}: NFTViewerProps) {
   const { data: account } = useAbstraxionAccount()
   const { client: queryClient } = useAbstraxionClient()
 
-  const [walletAddress, setWalletAddress] = useState(defaultWallet || '')
+  const [walletAddress, setWalletAddress] = useState('')
   const [nftList, setNftList] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')

@@ -63,14 +63,6 @@ export default function UserDashboard() {
       href: '/user/project-experience',
       color: 'from-purple-500 to-purple-600',
       count: 7
-    },
-    {
-      title: 'NFT Tools',
-      description: 'NFT Query & IPFS Reader',
-      icon: Award,
-      href: '/user/nft-tools',
-      color: 'from-yellow-500 to-orange-600',
-      count: 'Tools'
     }
   ]
 
