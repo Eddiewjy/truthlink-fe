@@ -75,7 +75,7 @@ export default function HomePage() {
             >
               <Shield className="h-8 w-8 text-green-400" />
               <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
-                Truthlink
+                TruthLink
               </span>
             </motion.div>
 
