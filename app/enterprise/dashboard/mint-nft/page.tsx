@@ -32,8 +32,8 @@ async function getOwnerClient() {
 
 export default function MintNFTPage() {
   const { data: account, login } = useAbstraxionAccount()
-  const { client } = useAbstraxionSigningClient()
   const { client: queryClient } = useAbstraxionClient()
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [mintResult, setMintResult] = useState<string>('')
   const [queryResult, setQueryResult] = useState<string>('')
@@ -42,17 +42,16 @@ export default function MintNFTPage() {
   const [tokenId, setTokenId] = useState<string>('')
   const [tokenUri, setTokenUri] = useState<string>('')
   const [loading, setLoading] = useState(false)
-  const [queryTokenId, setQueryTokenId] = useState('')
-  const [tokenInfo, setTokenInfo] = useState<any>(null)
-  const [ipfsImgUrl, setIpfsImgUrl] = useState('')
   const [uploadResult, setUploadResult] = useState<string>('')
   const [uploadedIpfsUrl, setUploadedIpfsUrl] = useState<string>('')
-  const [manualIpfsUrl, setManualIpfsUrl] = useState<string>('')
-  const fileInputRef = useRef<HTMLInputElement>(null)
   const [ipfsReadUrl, setIpfsReadUrl] = useState('')
   const [ipfsContentLoading, setIpfsContentLoading] = useState(false)
   const [ipfsContentType, setIpfsContentType] = useState<string>('')
-  const [ipfsContent, setIpfsContent] = useState<any>(null)
+  const [ipfsContent, setIpfsContent] = useState<string | object | null>(null)
+  const [queryTokenId, setQueryTokenId] = useState<string>('')
+  const [tokenInfo, setTokenInfo] = useState<any>(null)
+  const [ipfsImgUrl, setIpfsImgUrl] = useState<string>('')
+  const [manualIpfsUrl, setManualIpfsUrl] = useState<string>('')
 
   // Upload file to IPFS (Pinata)
   const uploadToIPFS = async (file: File) => {
@@ -353,7 +352,7 @@ export default function MintNFTPage() {
           {!ipfsContentLoading && ipfsContentType === 'image' && (
             <div className="flex flex-col items-center">
               <img
-                src={ipfsContent}
+                src={typeof ipfsContent === 'string' ? ipfsContent : ''}
                 alt="IPFS图片"
                 className="max-w-full max-h-96 rounded border border-gray-700"
                 onError={(e) => {
@@ -363,7 +362,7 @@ export default function MintNFTPage() {
                 }}
               />
               <a
-                href={ipfsContent}
+                href={typeof ipfsContent === 'string' ? ipfsContent : ''}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 underline mt-2"
@@ -378,23 +377,23 @@ export default function MintNFTPage() {
                 {JSON.stringify(ipfsContent, null, 2)}
               </pre>
               <div className="mt-2 text-sm text-gray-400">
-                JSON格式，共 {Object.keys(ipfsContent).length} 个字段
+                JSON格式，共 {ipfsContent && typeof ipfsContent === 'object' ? Object.keys(ipfsContent).length : 0} 个字段
               </div>
             </div>
           )}
           {!ipfsContentLoading && ipfsContentType === 'text' && (
             <div>
               <pre className="text-gray-200 bg-gray-800 p-3 rounded overflow-x-auto text-sm whitespace-pre-wrap">
-                {ipfsContent}
+                {typeof ipfsContent === 'string' ? ipfsContent : ''}
               </pre>
               <div className="mt-2 text-sm text-gray-400">
-                文本内容，共 {ipfsContent.length} 个字符
+                文本内容，共 {typeof ipfsContent === 'string' ? ipfsContent.length : 0} 个字符
               </div>
             </div>
           )}
           {!ipfsContentLoading && ipfsContentType === 'error' && (
             <div className="text-red-400 bg-red-900/20 p-3 rounded">
-              {ipfsContent}
+              {typeof ipfsContent === 'string' ? ipfsContent : 'Unknown error'}
             </div>
           )}
         </div>

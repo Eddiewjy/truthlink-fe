@@ -1,11 +1,11 @@
 'use client'
 
-import { KnowledgeGraph } from '@/components/knowledge-graph'
+import { KnowledgeGraph, GraphNode } from '@/components/knowledge-graph'
 import { useState } from 'react'
 import { EnterpriseNavigation } from '@/components/enterprise-navigation'
 
 export default function EnterpriseSearchPage() {
-  const [selectedNode, setSelectedNode] = useState(null)
+  const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">

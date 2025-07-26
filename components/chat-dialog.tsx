@@ -123,12 +123,12 @@ export const ChatDialog: React.FC<ChatDialogProps> = ({
   const handleFileUpload = (
     type: UploadedFile['type'],
     file: File,
-    content: string
+    content?: string
   ) => {
     const newFile: UploadedFile = {
       type,
       name: file.name,
-      content
+      content: content || ''
     }
     setUploadedFiles((prev) => [
       ...prev.filter((f) => f.type !== type),

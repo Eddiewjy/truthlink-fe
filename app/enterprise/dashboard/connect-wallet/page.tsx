@@ -24,7 +24,7 @@ type QueryResult = {
 export default function Page(): JSX.Element {
   // Abstraxion hooks
   const { data: account, login } = useAbstraxionAccount()
-  const { client, signArb, logout } = useAbstraxionSigningClient()
+  const { client, logout } = useAbstraxionSigningClient()
   const { client: queryClient } = useAbstraxionClient()
 
   // State variables
@@ -55,8 +55,8 @@ export default function Page(): JSX.Element {
           if (response) {
             setJsonInput(response)
           }
-        } catch (error) {
-          console.error('Error fetching user data:', error)
+        } catch {
+          console.error('Error fetching user data')
         }
       }
     }
@@ -93,8 +93,8 @@ export default function Page(): JSX.Element {
         get_users: {}
       })
       setQueryResult({ users: response })
-    } catch (error) {
-      console.error('Error querying users:', error)
+    } catch {
+      console.error('Error querying users')
     } finally {
       setLoading(false)
     }
@@ -112,8 +112,8 @@ export default function Page(): JSX.Element {
         get_map: {}
       })
       setQueryResult({ map: response })
-    } catch (error) {
-      console.error('Error querying map:', error)
+    } catch {
+      console.error('Error querying map')
     } finally {
       setLoading(false)
     }
@@ -132,8 +132,8 @@ export default function Page(): JSX.Element {
       })
       setQueryResult({ value: response })
       setSelectedAddress(address)
-    } catch (error) {
-      console.error('Error querying value:', error)
+    } catch {
+      console.error('Error querying value')
     } finally {
       setLoading(false)
     }
@@ -182,8 +182,8 @@ export default function Page(): JSX.Element {
       )
       setExecuteResult(res)
       console.log('Transaction successful:', res)
-    } catch (error) {
-      console.error('Error executing transaction:', error)
+    } catch {
+      console.error('Error executing transaction')
     } finally {
       setLoading(false)
     }
@@ -207,8 +207,8 @@ export default function Page(): JSX.Element {
                 setIsLoggingIn(true)
                 try {
                   await login()
-                } catch (error) {
-                  console.error('Login failed:', error)
+                } catch {
+                  console.error('Login failed')
                 } finally {
                   setIsLoggingIn(false)
                 }
