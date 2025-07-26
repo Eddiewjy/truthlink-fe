@@ -28,47 +28,27 @@ export default function WorkExperience() {
     {
       id: 1,
       type: 'Internship',
-      company: 'Tech Solutions Inc.',
-      position: 'Software Development Intern',
-      duration: 'June 2023 - August 2023',
-      location: 'San Francisco, CA',
-      description:
-        'Developed and maintained web applications using React and Node.js. Collaborated with senior developers on multiple projects.',
-      skills: ['React', 'Node.js', 'JavaScript', 'Git'],
-      issuer: 'Tech Solutions Inc.',
-      issuerLogo: '/company-logo1.jpg',
-      nftId: 'NFT-WORK-001',
-      verified: true
-    },
-    {
-      id: 2,
-      type: 'Full-time',
-      company: 'Digital Innovations LLC',
-      position: 'Junior Frontend Developer',
-      duration: 'September 2023 - Present',
-      location: 'New York, NY',
-      description:
-        'Building responsive user interfaces and implementing new features for client projects. Working with modern frontend technologies.',
-      skills: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'],
-      issuer: 'Digital Innovations LLC',
-      issuerLogo: '/company-logo2.jpg',
-      nftId: 'NFT-WORK-002',
-      verified: true
-    },
-    {
-      id: 3,
-      type: 'Part-time',
-      company: 'StartupX',
-      position: 'Web Developer',
-      duration: 'January 2023 - May 2023',
+      company: 'Virtual',
+      position: 'Web3 Product Manager Intern',
+      duration: 'March 2025 - June 2025',
       location: 'Remote',
       description:
-        'Contributed to the development of a fintech application. Implemented payment processing features and user authentication.',
-      skills: ['Vue.js', 'Python', 'PostgreSQL', 'Docker'],
-      issuer: 'StartupX',
-      issuerLogo: '/company-logo3.jpg',
-      nftId: 'NFT-WORK-003',
-      verified: false
+        "Participated in the product design and validation of Virtual's multi-agent background investigation system. Responsible for requirement research, functional documentation, interaction flow design, and led communication with technical teams to implement on-chain reputation systems. Assisted in building B2B prototype platform, designed front-end and back-end user flows, promoted user testing and iterated 2 rounds of product prototypes.",
+      skills: [
+        'Product Management',
+        'Web3',
+        'User Research',
+        'Prototype Design',
+        'Blockchain',
+        'B2B Platform'
+      ],
+      issuer: 'Virtual',
+      issuerLogo: '/company-logo1.jpg',
+      nftId: 'NFT-WORK-001',
+      verified: true,
+      department: 'Strategy and Innovation Product Group',
+      performance:
+        'Excellent performance with keen user insight and systematic thinking. Modules under responsibility launched on schedule and received unanimous praise from mentors and team members.'
     }
   ]
 
@@ -231,20 +211,20 @@ export default function WorkExperience() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-blue-400">3</div>
+                  <div className="text-2xl font-bold text-blue-400">1</div>
                   <div className="text-sm text-gray-300">Total Positions</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-green-400">2</div>
+                  <div className="text-2xl font-bold text-green-400">1</div>
                   <div className="text-sm text-gray-300">Verified NFTs</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-purple-400">12</div>
+                  <div className="text-2xl font-bold text-purple-400">6</div>
                   <div className="text-sm text-gray-300">Skills Acquired</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-yellow-400">1.5</div>
-                  <div className="text-sm text-gray-300">Years Experience</div>
+                  <div className="text-2xl font-bold text-yellow-400">3</div>
+                  <div className="text-sm text-gray-300">Months Experience</div>
                 </div>
               </div>
             </CardContent>

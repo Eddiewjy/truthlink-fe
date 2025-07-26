@@ -31,126 +31,39 @@ export default function ProjectExperience() {
     {
       id: 1,
       type: 'Competition',
-      title: 'AI Innovation Challenge 2023',
-      role: 'Team Lead & Frontend Developer',
-      duration: 'May 2023 - June 2023',
-      location: 'MIT, Cambridge',
+      title: 'AdventureX | TruthLink Web3 On-chain Background Check Platform',
+      role: 'Product Owner',
+      duration: 'May 2025',
+      location: 'Remote',
       description:
-        'Led a team of 4 developers to create an AI-powered healthcare diagnostic tool. Implemented machine learning algorithms for medical image analysis.',
-      achievement: '1st Place Winner',
-      technologies: ['Python', 'TensorFlow', 'React', 'AWS'],
-      teamSize: 4,
-      issuer: 'MIT Innovation Lab',
-      issuerLogo: '/mit-logo.jpg',
+        'Led the product development of TruthLink, an Agent-driven on-chain background check system. Responsible for project planning, competitive analysis, NFT structure definition, and coordinating technical and design teams. The platform enables decentralized identity verification through blockchain technology.',
+      achievement: '1st Place Winner - Multi-Agent & On-chain Application Track',
+      technologies: ['Web3', 'Blockchain', 'NFT', 'Agent Systems', 'Product Management'],
+      teamSize: 5,
+      issuer: 'AdventureX',
+      issuerLogo: '/adventurex-logo.jpg',
       nftId: 'NFT-PROJ-001',
-      verified: true
+      verified: true,
+      projectLink: 'https://truthlink.xyz',
+      responsibilities: 'Project planning, competitive analysis, NFT structure definition, technical & design coordination'
     },
     {
       id: 2,
-      type: 'Research',
-      title: 'Blockchain Security Research',
-      role: 'Research Assistant',
-      duration: 'September 2023 - December 2023',
-      location: 'NYU, New York',
-      description:
-        'Conducted research on blockchain security vulnerabilities and proposed novel consensus mechanisms. Published findings in academic conference.',
-      achievement: 'Paper Published in ICBC 2024',
-      technologies: ['Solidity', 'Web3.js', 'Node.js', 'Ethereum'],
-      teamSize: 3,
-      issuer: 'NYU Computer Science Dept',
-      issuerLogo: '/nyu-logo.jpg',
-      nftId: 'NFT-PROJ-002',
-      verified: true
-    },
-    {
-      id: 3,
       type: 'Hackathon',
-      title: 'HackNY Spring 2023',
-      role: 'Full-Stack Developer',
-      duration: 'April 2023',
-      location: 'Columbia University, NY',
-      description:
-        'Built a social impact platform connecting volunteers with local nonprofits. Developed real-time matching algorithms and mobile-responsive interface.',
-      achievement: 'Best Social Impact Award',
-      technologies: ['React Native', 'Firebase', 'Express.js', 'MongoDB'],
-      teamSize: 5,
-      issuer: 'HackNY Organization',
-      issuerLogo: '/hackny-logo.jpg',
-      nftId: 'NFT-PROJ-003',
-      verified: true
-    },
-    {
-      id: 4,
-      type: 'Competition',
-      title: 'NASA Space Apps Challenge',
-      role: 'Data Scientist',
-      duration: 'October 2023',
+      title: 'Solana Hackathon | FlowQuest',
+      role: 'Product Manager',
+      duration: 'June 2025',
       location: 'Remote',
       description:
-        'Analyzed satellite data to predict climate change impacts on agriculture. Created visualization dashboard for farmers and researchers.',
-      achievement: 'Global Finalist',
-      technologies: ['Python', 'Pandas', 'D3.js', 'NASA APIs'],
+        'Focused on skill-based DAO ecosystem, designed an on-chain task and user matching platform. Planned modules including task publishing, skill mapping, and wallet behavior analysis. Led project vision output and user growth strategy design for the decentralized talent marketplace.',
+      achievement: 'Top 10 - Innovation Track',
+      technologies: ['Solana', 'DAO', 'DeFi', 'Skill Mapping', 'User Analytics'],
       teamSize: 4,
-      issuer: 'NASA',
-      issuerLogo: '/nasa-logo.jpg',
-      nftId: 'NFT-PROJ-004',
-      verified: true
-    },
-    {
-      id: 5,
-      type: 'Research',
-      title: 'Quantum Computing Algorithms',
-      role: 'Undergraduate Researcher',
-      duration: 'January 2024 - Present',
-      location: 'Princeton, NJ',
-      description:
-        'Developing quantum algorithms for optimization problems. Collaborating with PhD students on quantum circuit design and error correction.',
-      achievement: 'Research Grant Recipient',
-      technologies: ['Qiskit', 'Python', 'MATLAB', 'Quantum Circuits'],
-      teamSize: 2,
-      issuer: 'Princeton Quantum Institute',
-      issuerLogo: '/princeton-logo.jpg',
-      nftId: 'NFT-PROJ-005',
-      verified: false
-    },
-    {
-      id: 6,
-      type: 'Hackathon',
-      title: 'TechCrunch Disrupt 2023',
-      role: 'Backend Developer',
-      duration: 'September 2023',
-      location: 'San Francisco, CA',
-      description:
-        'Created a decentralized identity verification system using blockchain technology. Implemented zero-knowledge proof protocols for privacy.',
-      achievement: 'Top 10 Finalist',
-      technologies: ['Solidity', 'IPFS', 'Zero-Knowledge Proofs', 'React'],
-      teamSize: 3,
-      issuer: 'TechCrunch',
-      issuerLogo: '/techcrunch-logo.jpg',
-      nftId: 'NFT-PROJ-006',
-      verified: true
-    },
-    {
-      id: 7,
-      type: 'Competition',
-      title: 'Google Code Jam 2023',
-      role: 'Individual Participant',
-      duration: 'March 2023 - May 2023',
-      location: 'Online',
-      description:
-        "Competed in Google's annual programming competition, solving complex algorithmic problems under time constraints. Advanced through multiple rounds.",
-      achievement: 'Round 3 Qualifier',
-      technologies: [
-        'C++',
-        'Algorithms',
-        'Data Structures',
-        'Competitive Programming'
-      ],
-      teamSize: 1,
-      issuer: 'Google',
-      issuerLogo: '/google-logo.jpg',
-      nftId: 'NFT-PROJ-007',
-      verified: true
+      issuer: 'Solana Foundation',
+      issuerLogo: '/solana-logo.jpg',
+      nftId: 'NFT-PROJ-002',
+      verified: true,
+      responsibilities: 'Project vision, user growth strategy, task publishing system design, skill graph planning'
     }
   ]
 
@@ -298,6 +211,29 @@ export default function ProjectExperience() {
                 <CardContent>
                   <p className="text-gray-300 mb-4">{experience.description}</p>
 
+                  {/* Responsibilities Section */}
+                  {experience.responsibilities && (
+                    <div className="mb-4">
+                      <h4 className="text-white font-medium mb-2">Key Responsibilities:</h4>
+                      <p className="text-gray-400 text-sm">{experience.responsibilities}</p>
+                    </div>
+                  )}
+
+                  {/* Project Link */}
+                  {experience.projectLink && (
+                    <div className="mb-4">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-blue-500/30 text-blue-300 hover:bg-blue-500/10"
+                        onClick={() => window.open(experience.projectLink, '_blank')}
+                      >
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        View Project
+                      </Button>
+                    </div>
+                  )}
+
                   <div className="flex flex-wrap gap-2">
                     {experience.technologies.map((tech, techIndex) => (
                       <Badge
@@ -334,19 +270,19 @@ export default function ProjectExperience() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-blue-400">7</div>
+                  <div className="text-2xl font-bold text-blue-400">2</div>
                   <div className="text-sm text-gray-300">Total Projects</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-green-400">6</div>
+                  <div className="text-2xl font-bold text-green-400">2</div>
                   <div className="text-sm text-gray-300">Verified NFTs</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-purple-400">5</div>
+                  <div className="text-2xl font-bold text-purple-400">2</div>
                   <div className="text-sm text-gray-300">Awards Won</div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-2xl font-bold text-yellow-400">20+</div>
+                  <div className="text-2xl font-bold text-yellow-400">10</div>
                   <div className="text-sm text-gray-300">Technologies Used</div>
                 </div>
               </div>
