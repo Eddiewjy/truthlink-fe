@@ -201,7 +201,9 @@ export const NodeDrawer: React.FC<NodeDrawerProps> = ({ node, onClose }) => {
             {isAgent && (
               <>
                 <Button
-                  onClick={() => setIsChatOpen(true)}
+                  onClick={() =>
+                    window.open('https://app.virtuals.io/acp', '_blank')
+                  }
                   className="w-full bg-cyan-600 hover:bg-cyan-700 text-white flex items-center justify-center space-x-2"
                 >
                   <MessageCircle className="w-4 h-4" />

@@ -377,7 +377,11 @@ export default function MintNFTPage() {
                 {JSON.stringify(ipfsContent, null, 2)}
               </pre>
               <div className="mt-2 text-sm text-gray-400">
-                JSON格式，共 {ipfsContent && typeof ipfsContent === 'object' ? Object.keys(ipfsContent).length : 0} 个字段
+                JSON格式，共{' '}
+                {ipfsContent && typeof ipfsContent === 'object'
+                  ? Object.keys(ipfsContent).length
+                  : 0}{' '}
+                个字段
               </div>
             </div>
           )}
@@ -387,7 +391,9 @@ export default function MintNFTPage() {
                 {typeof ipfsContent === 'string' ? ipfsContent : ''}
               </pre>
               <div className="mt-2 text-sm text-gray-400">
-                文本内容，共 {typeof ipfsContent === 'string' ? ipfsContent.length : 0} 个字符
+                文本内容，共{' '}
+                {typeof ipfsContent === 'string' ? ipfsContent.length : 0}{' '}
+                个字符
               </div>
             </div>
           )}
