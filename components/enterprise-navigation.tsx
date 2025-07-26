@@ -32,7 +32,7 @@ export function EnterpriseNavigation() {
               className="flex items-center space-x-2"
             >
               <Shield className="h-8 w-8 text-indigo-400" />
-              <span className="text-2xl font-bold text-white">VerifyChain</span>
+              <span className="text-2xl font-bold text-white">TruthLink</span>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-6">
