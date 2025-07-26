@@ -4,7 +4,7 @@ import {
   useAbstraxionAccount,
   useAbstraxionSigningClient
 } from '@burnt-labs/abstraxion'
-import { Button } from '@/components/ui/button'
+import { Button } from '@burnt-labs/ui'
 import '@burnt-labs/ui/dist/index.css'
 
 interface AbstraxionConnectButtonProps {
@@ -25,13 +25,15 @@ export function AbstraxionConnectButton({
   const [loading, setLoading] = useState(false)
 
   const handleConnect = async () => {
-    setLoading(true)
-    try {
-      if (!account?.bech32Address) {
+    if (!account?.bech32Address) {
+      setLoading(true)
+      try {
         await login()
+      } catch (error) {
+        console.error('Login failed:', error)
+      } finally {
+        setLoading(false)
       }
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -48,16 +50,12 @@ export function AbstraxionConnectButton({
     return (
       <div className={`flex items-center gap-2 ${className}`}>
         <div className="text-sm text-white/80">
-          {`${account.bech32Address.slice(
-            0,
-            6
-          )}...${account.bech32Address.slice(-4)}`}
+          {account.bech32Address.slice(0, 10) + "..." + account.bech32Address.slice(-6)}
         </div>
         <Button
           onClick={handleDisconnect}
           disabled={loading}
-          variant="outline"
-          size="sm"
+          structure="base"
           className="bg-red-600 hover:bg-red-700 text-white border-red-600 hover:border-red-700"
         >
           {loading ? '断开中...' : disconnectText}
@@ -70,6 +68,7 @@ export function AbstraxionConnectButton({
     <Button
       onClick={handleConnect}
       disabled={loading}
+      structure="base"
       className={`bg-blue-600 hover:bg-blue-700 text-white ${className}`}
     >
       {loading ? 'Connecting...' : connectText}
