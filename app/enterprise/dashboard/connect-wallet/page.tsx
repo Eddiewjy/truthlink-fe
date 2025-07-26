@@ -1,227 +1,255 @@
-"use client";
-import Link from "next/link";
-import { useState, useEffect } from "react";
+'use client'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import {
   useAbstraxionAccount,
   useAbstraxionSigningClient,
-  useAbstraxionClient,
-} from "@burnt-labs/abstraxion";
-import { Button } from "@burnt-labs/ui";
-import "@burnt-labs/ui/dist/index.css";
-import LoadingModal from "@/components/LoadingModal";
-import type { ExecuteResult } from "@cosmjs/cosmwasm-stargate";
+  useAbstraxionClient
+} from '@burnt-labs/abstraxion'
+import { Button } from '@burnt-labs/ui'
+import '@burnt-labs/ui/dist/index.css'
+import LoadingModal from '@/components/LoadingModal'
+import type { ExecuteResult } from '@cosmjs/cosmwasm-stargate'
 
-const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "";
+const contractAddress =
+  'xion172gj4lxt5swwjnrgvk944dckqnyjwjtq6qnh74zc4jd75wc75e2sczqv4p'
 
-if (!contractAddress) {
-  throw new Error("CONTRACT_ADDRESS environment variable is not set");
-}
-
-type ExecuteResultOrUndefined = ExecuteResult | undefined;
+type ExecuteResultOrUndefined = ExecuteResult | undefined
 type QueryResult = {
-  users?: string[];
-  value?: string;
-  map?: Array<[string, string]>;
-};
+  users?: string[]
+  value?: string
+  map?: Array<[string, string]>
+}
 
 export default function Page(): JSX.Element {
   // Abstraxion hooks
-  const { data: account, login } = useAbstraxionAccount();
-  const { client, signArb, logout } = useAbstraxionSigningClient();
-  const { client: queryClient } = useAbstraxionClient();
+  const { data: account, login } = useAbstraxionAccount()
+  const { client, signArb, logout } = useAbstraxionSigningClient()
+  const { client: queryClient } = useAbstraxionClient()
 
   // State variables
-  const [loading, setLoading] = useState(false);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [executeResult, setExecuteResult] = useState<ExecuteResultOrUndefined>(undefined);
-  const [queryResult, setQueryResult] = useState<QueryResult>({});
-  const [jsonInput, setJsonInput] = useState<string>("");
-  const [selectedAddress, setSelectedAddress] = useState<string>("");
-  const [jsonError, setJsonError] = useState<string>("");
-  const [showValueByUserForm, setShowValueByUserForm] = useState<boolean>(false);
-  const [showUpdateJsonForm, setShowUpdateJsonForm] = useState<boolean>(true);
-  const [addressInput, setAddressInput] = useState<string>("");
-  const [activeView, setActiveView] = useState<string>("updateJson");
+  const [loading, setLoading] = useState(false)
+  const [isLoggingIn, setIsLoggingIn] = useState(false)
+  const [executeResult, setExecuteResult] =
+    useState<ExecuteResultOrUndefined>(undefined)
+  const [queryResult, setQueryResult] = useState<QueryResult>({})
+  const [jsonInput, setJsonInput] = useState<string>('')
+  const [selectedAddress, setSelectedAddress] = useState<string>('')
+  const [jsonError, setJsonError] = useState<string>('')
+  const [showValueByUserForm, setShowValueByUserForm] = useState<boolean>(false)
+  const [showUpdateJsonForm, setShowUpdateJsonForm] = useState<boolean>(true)
+  const [addressInput, setAddressInput] = useState<string>('')
+  const [activeView, setActiveView] = useState<string>('updateJson')
 
   // Add effect to fetch user's JSON data when they log in
   useEffect(() => {
     const fetchUserData = async () => {
       if (account?.bech32Address && queryClient) {
         try {
-          const response = await queryClient.queryContractSmart(contractAddress, {
-            get_value_by_user: { address: account.bech32Address }
-          });
+          const response = await queryClient.queryContractSmart(
+            contractAddress,
+            {
+              get_value_by_user: { address: account.bech32Address }
+            }
+          )
           if (response) {
-            setJsonInput(response);
+            setJsonInput(response)
           }
         } catch (error) {
-          console.error("Error fetching user data:", error);
+          console.error('Error fetching user data:', error)
         }
       }
-    };
+    }
 
-    fetchUserData();
-  }, [account?.bech32Address, queryClient]);
+    fetchUserData()
+  }, [account?.bech32Address, queryClient])
 
-  const blockExplorerUrl = `https://www.mintscan.io/xion-testnet/tx/${executeResult?.transactionHash}`;
+  const blockExplorerUrl = `https://www.mintscan.io/xion-testnet/tx/${executeResult?.transactionHash}`
 
   const clearResults = () => {
-    setQueryResult({});
-    setExecuteResult(undefined);
-  };
+    setQueryResult({})
+    setExecuteResult(undefined)
+  }
 
   // Effect to handle account changes
   useEffect(() => {
     if (account?.bech32Address) {
-      setShowUpdateJsonForm(true);
-      setActiveView("updateJson");
-      clearResults();
+      setShowUpdateJsonForm(true)
+      setActiveView('updateJson')
+      clearResults()
     }
-  }, [account?.bech32Address]);
+  }, [account?.bech32Address])
 
   // Query functions
   const getUsers = async () => {
-    setLoading(true);
-    clearResults();
-    setActiveView("users");
-    setShowUpdateJsonForm(false);
-    setShowValueByUserForm(false);
+    setLoading(true)
+    clearResults()
+    setActiveView('users')
+    setShowUpdateJsonForm(false)
+    setShowValueByUserForm(false)
     try {
-      if (!queryClient) throw new Error("Query client is not defined");
-      const response = await queryClient.queryContractSmart(contractAddress, { get_users: {} });
-      setQueryResult({ users: response });
+      if (!queryClient) throw new Error('Query client is not defined')
+      const response = await queryClient.queryContractSmart(contractAddress, {
+        get_users: {}
+      })
+      setQueryResult({ users: response })
     } catch (error) {
-      console.error("Error querying users:", error);
+      console.error('Error querying users:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const getMap = async () => {
-    setLoading(true);
-    clearResults();
-    setActiveView("map");
-    setShowUpdateJsonForm(false);
-    setShowValueByUserForm(false);
+    setLoading(true)
+    clearResults()
+    setActiveView('map')
+    setShowUpdateJsonForm(false)
+    setShowValueByUserForm(false)
     try {
-      if (!queryClient) throw new Error("Query client is not defined");
-      const response = await queryClient.queryContractSmart(contractAddress, { get_map: {} });
-      setQueryResult({ map: response });
+      if (!queryClient) throw new Error('Query client is not defined')
+      const response = await queryClient.queryContractSmart(contractAddress, {
+        get_map: {}
+      })
+      setQueryResult({ map: response })
     } catch (error) {
-      console.error("Error querying map:", error);
+      console.error('Error querying map:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const getValueByUser = async (address: string) => {
-    setLoading(true);
-    clearResults();
-    setActiveView("value");
-    setShowUpdateJsonForm(false);
-    setShowValueByUserForm(false);
+    setLoading(true)
+    clearResults()
+    setActiveView('value')
+    setShowUpdateJsonForm(false)
+    setShowValueByUserForm(false)
     try {
-      if (!queryClient) throw new Error("Query client is not defined");
-      const response = await queryClient.queryContractSmart(contractAddress, { 
-        get_value_by_user: { address } 
-      });
-      setQueryResult({ value: response });
-      setSelectedAddress(address);
+      if (!queryClient) throw new Error('Query client is not defined')
+      const response = await queryClient.queryContractSmart(contractAddress, {
+        get_value_by_user: { address }
+      })
+      setQueryResult({ value: response })
+      setSelectedAddress(address)
     } catch (error) {
-      console.error("Error querying value:", error);
+      console.error('Error querying value:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const formatJson = (jsonString: string): string => {
     try {
-      const parsed = JSON.parse(jsonString);
-      return JSON.stringify(parsed, null, 2);
+      const parsed = JSON.parse(jsonString)
+      return JSON.stringify(parsed, null, 2)
     } catch (error) {
-      return jsonString;
+      return jsonString
     }
-  };
+  }
 
   const validateJson = (jsonString: string): boolean => {
     try {
-      JSON.parse(jsonString);
-      setJsonError("");
-      return true;
+      JSON.parse(jsonString)
+      setJsonError('')
+      return true
     } catch (error) {
-      setJsonError("Invalid JSON format");
-      return false;
+      setJsonError('Invalid JSON format')
+      return false
     }
-  };
+  }
 
   const handleFormatJson = () => {
     if (validateJson(jsonInput)) {
-      setJsonInput(formatJson(jsonInput));
+      setJsonInput(formatJson(jsonInput))
     }
-  };
+  }
 
   // Update JSON value
   const updateValue = async () => {
     if (!validateJson(jsonInput)) {
-      return;
+      return
     }
-    setLoading(true);
+    setLoading(true)
     try {
-      if (!client || !account) throw new Error("Client or account not defined");
-      const msg = { update: { value: jsonInput } };
-      const res = await client.execute(account.bech32Address, contractAddress, msg, "auto");
-      setExecuteResult(res);
-      console.log("Transaction successful:", res);
+      if (!client || !account) throw new Error('Client or account not defined')
+      const msg = { update: { value: jsonInput } }
+      const res = await client.execute(
+        account.bech32Address,
+        contractAddress,
+        msg,
+        'auto'
+      )
+      setExecuteResult(res)
+      console.log('Transaction successful:', res)
     } catch (error) {
-      console.error("Error executing transaction:", error);
+      console.error('Error executing transaction:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <main className="m-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-4 p-4">
-      <h1 className="text-2xl font-bold tracking-tighter text-white">User Map JSON Storage</h1><br /><br />
+      <h1 className="text-2xl font-bold tracking-tighter text-white">
+        User Map JSON Storage
+      </h1>
+      <br />
+      <br />
 
       <div className="flex w-full gap-8">
         {/* Left Column - Buttons */}
         <div className="flex w-1/3 flex-col gap-4">
-          <Button 
-            fullWidth 
+          <Button
+            fullWidth
             onClick={async () => {
               if (!account?.bech32Address) {
-                setIsLoggingIn(true);
+                setIsLoggingIn(true)
                 try {
-                  await login();
+                  await login()
                 } catch (error) {
-                  console.error('Login failed:', error);
+                  console.error('Login failed:', error)
                 } finally {
-                  setIsLoggingIn(false);
+                  setIsLoggingIn(false)
                 }
               }
-            }} 
+            }}
             structure="base"
           >
-            {account?.bech32Address ? account.bech32Address.slice(0, 10) + "..." + account.bech32Address.slice(-6) : "CONNECT"}
+            {account?.bech32Address
+              ? account.bech32Address.slice(0, 10) +
+                '...' +
+                account.bech32Address.slice(-6)
+              : 'CONNECT'}
           </Button>
 
           {client && (
             <>
-              <Button disabled={loading} fullWidth onClick={getUsers} structure="base">
-                {loading ? "LOADING..." : "Get Users"}
+              <Button
+                disabled={loading}
+                fullWidth
+                onClick={getUsers}
+                structure="base"
+              >
+                {loading ? 'LOADING...' : 'Get Users'}
               </Button>
-              <Button disabled={loading} fullWidth onClick={getMap} structure="base">
-                {loading ? "LOADING..." : "Get Map"}
+              <Button
+                disabled={loading}
+                fullWidth
+                onClick={getMap}
+                structure="base"
+              >
+                {loading ? 'LOADING...' : 'Get Map'}
               </Button>
-              <Button 
-                disabled={loading} 
-                fullWidth 
+              <Button
+                disabled={loading}
+                fullWidth
                 onClick={() => {
-                  setShowValueByUserForm(true);
-                  setShowUpdateJsonForm(false);
-                  clearResults();
-                  setActiveView("valueForm");
-                }} 
+                  setShowValueByUserForm(true)
+                  setShowUpdateJsonForm(false)
+                  clearResults()
+                  setActiveView('valueForm')
+                }}
                 structure="base"
               >
                 Get Value by User
@@ -230,17 +258,22 @@ export default function Page(): JSX.Element {
                 disabled={loading}
                 fullWidth
                 onClick={() => {
-                  setShowUpdateJsonForm(true);
-                  setShowValueByUserForm(false);
-                  clearResults();
-                  setActiveView("updateJson");
+                  setShowUpdateJsonForm(true)
+                  setShowValueByUserForm(false)
+                  clearResults()
+                  setActiveView('updateJson')
                 }}
                 structure="base"
               >
                 Update JSON
               </Button>
               {logout && (
-                <Button disabled={loading} fullWidth onClick={logout} structure="base">
+                <Button
+                  disabled={loading}
+                  fullWidth
+                  onClick={logout}
+                  structure="base"
+                >
                   LOGOUT
                 </Button>
               )}
@@ -264,7 +297,7 @@ export default function Page(): JSX.Element {
                 <Button
                   fullWidth
                   onClick={() => {
-                    getValueByUser(addressInput);
+                    getValueByUser(addressInput)
                   }}
                   structure="base"
                 >
@@ -278,36 +311,31 @@ export default function Page(): JSX.Element {
             <div className="flex flex-col gap-4">
               <textarea
                 className={`min-h-[200px] w-full rounded border p-2 text-black font-mono ${
-                  jsonError ? "border-red-500" : ""
+                  jsonError ? 'border-red-500' : ''
                 }`}
                 value={jsonInput}
                 onChange={(e) => {
-                  setJsonInput(e.target.value);
-                  validateJson(e.target.value);
+                  setJsonInput(e.target.value)
+                  validateJson(e.target.value)
                 }}
                 onBlur={(e) => {
                   if (validateJson(e.target.value)) {
-                    setJsonInput(formatJson(e.target.value));
+                    setJsonInput(formatJson(e.target.value))
                   }
                 }}
                 placeholder="Enter JSON data..."
               />
-              {jsonError && (
-                <div className="text-red-500">{jsonError}</div>
-              )}
+              {jsonError && <div className="text-red-500">{jsonError}</div>}
               <div className="flex gap-2">
-                <Button 
-                  disabled={loading || !!jsonError} 
-                  fullWidth 
-                  onClick={updateValue} 
-                  structure="base"
-                >
-                  {loading ? "LOADING..." : "Submit JSON"}
-                </Button>
                 <Button
-                  onClick={handleFormatJson}
+                  disabled={loading || !!jsonError}
+                  fullWidth
+                  onClick={updateValue}
                   structure="base"
                 >
+                  {loading ? 'LOADING...' : 'Submit JSON'}
+                </Button>
+                <Button onClick={handleFormatJson} structure="base">
                   Format JSON
                 </Button>
               </div>
@@ -315,11 +343,13 @@ export default function Page(): JSX.Element {
           )}
 
           {!account?.bech32Address && (
-            <div className="text-center text-white">Please connect your wallet to interact with the contract</div>
+            <div className="text-center text-white">
+              Please connect your wallet to interact with the contract
+            </div>
           )}
 
           {/* Query Results */}
-          {activeView === "users" && queryResult.users && (
+          {activeView === 'users' && queryResult.users && (
             <div className="rounded border-2 border-primary p-4">
               <h3 className="mb-2 font-bold">Users:</h3>
               <div className="flex flex-col gap-2">
@@ -328,8 +358,8 @@ export default function Page(): JSX.Element {
                     <span>{user}</span>
                     <Button
                       onClick={() => {
-                        getValueByUser(user);
-                        setActiveView("value");
+                        getValueByUser(user)
+                        setActiveView('value')
                       }}
                     >
                       View Value
@@ -340,14 +370,14 @@ export default function Page(): JSX.Element {
             </div>
           )}
 
-          {activeView === "value" && queryResult.value && (
+          {activeView === 'value' && queryResult.value && (
             <div className="rounded border-2 border-primary p-4">
               <h3 className="mb-2 font-bold">Value for {selectedAddress}:</h3>
               <pre className="whitespace-pre-wrap">{queryResult.value}</pre>
             </div>
           )}
 
-          {activeView === "map" && queryResult.map && (
+          {activeView === 'map' && queryResult.map && (
             <div className="rounded border-2 border-primary p-4">
               <h3 className="mb-2 font-bold">Map Contents:</h3>
               <div className="flex flex-col gap-2">
@@ -364,15 +394,23 @@ export default function Page(): JSX.Element {
           {executeResult && (
             <div className="flex flex-col rounded border-2 border-black p-2 dark:border-white">
               <div className="mt-2">
-                <p className="text-zinc-500"><span className="font-bold">Transaction Hash</span></p>
+                <p className="text-zinc-500">
+                  <span className="font-bold">Transaction Hash</span>
+                </p>
                 <p className="text-sm">{executeResult.transactionHash}</p>
               </div>
               <div className="mt-2">
-                <p className="text-zinc-500"><span className="font-bold">Block Height:</span></p>
+                <p className="text-zinc-500">
+                  <span className="font-bold">Block Height:</span>
+                </p>
                 <p className="text-sm">{executeResult.height}</p>
               </div>
               <div className="mt-2">
-                <Link className="text-black underline visited:text-purple-600 dark:text-white" href={blockExplorerUrl} target="_blank">
+                <Link
+                  className="text-black underline visited:text-purple-600 dark:text-white"
+                  href={blockExplorerUrl}
+                  target="_blank"
+                >
                   View in Block Explorer
                 </Link>
               </div>
@@ -381,8 +419,11 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <LoadingModal isOpen={isLoggingIn} message="Connecting to your wallet..." />
+      <LoadingModal
+        isOpen={isLoggingIn}
+        message="Connecting to your wallet..."
+      />
       <LoadingModal isOpen={loading} message="Processing transaction..." />
     </main>
-  );
+  )
 }

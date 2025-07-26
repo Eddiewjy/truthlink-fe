@@ -83,7 +83,7 @@ export const ChatDialog: React.FC<ChatDialogProps> = ({
     setInputMessage('')
     setUploadedFiles([])
 
-    // 模拟Agent处理过程
+    // Simulate agent processing
     setIsProcessing(true)
     setTimeout(() => {
       const agentResponse: Message = {

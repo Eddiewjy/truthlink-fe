@@ -56,36 +56,39 @@ export default function MintWorkNFT() {
     setLoading(true)
     setMintResult('')
     try {
-      if (!tokenId || !tokenUri) throw new Error('请填写 token_id 和 token_uri')
+      if (!tokenId || !tokenUri)
+        throw new Error('Please fill in token_id and token_uri')
 
-      // 1. 拿到 owner 钱包的 signer / 地址
+      // 1. Get owner wallet signer / address
       const { client: ownerClient, ownerAddr } = await getOwnerClient()
 
-      // 2. 组装执行消息
+      // 2. Assemble execution message
       const msg = {
         mint: {
           token_id: tokenId,
-          owner: receiver || ownerAddr, // 接收者，留空则发给自己
+          owner: receiver || ownerAddr, // Receiver, leave empty to send to self
           token_uri: tokenUri
         }
       }
 
-      // 3. 设定费率
+      // 3. Set fee rate
       const fee: StdFee = {
         amount: [{ denom: 'uxion', amount: '6000' }], // 0.006 XION
         gas: '500000'
       }
 
-      // 4. 由 ownerAddr 执行
+      // 4. Execute by ownerAddr
       const res = await ownerClient.execute(
         ownerAddr,
         contractAddress,
         msg,
         fee
       )
-      setMintResult(`NFT铸造成功！交易哈希: ${res.transactionHash}`)
+      setMintResult(
+        `NFT minted successfully! Transaction hash: ${res.transactionHash}`
+      )
     } catch (error: any) {
-      setMintResult(`铸造失败: ${error.message || error.toString()}`)
+      setMintResult(`Minting failed: ${error.message || error.toString()}`)
     } finally {
       setLoading(false)
     }
@@ -105,7 +108,7 @@ export default function MintWorkNFT() {
             Mint NFT
           </DialogTitle>
           <DialogDescription className="text-gray-300">
-            铸造工作经历NFT
+            Mint Work Experience NFT
           </DialogDescription>
         </DialogHeader>
 
@@ -116,7 +119,7 @@ export default function MintWorkNFT() {
         >
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">
-              接收者钱包地址（可选，留空则发给自己）
+              Receiver Wallet Address (Optional, leave empty to send to self)
             </label>
             <Input
               value={receiver}
@@ -128,7 +131,7 @@ export default function MintWorkNFT() {
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">
-              Token ID (唯一)
+              Token ID (Unique)
             </label>
             <Input
               value={tokenId}
@@ -140,7 +143,7 @@ export default function MintWorkNFT() {
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">
-              Token URI (IPFS链接)
+              Token URI (IPFS Link)
             </label>
             <Input
               value={tokenUri}
@@ -150,7 +153,7 @@ export default function MintWorkNFT() {
             />
           </div>
 
-          {/* 状态显示 */}
+          {/* Status Display */}
           {mintResult && (
             <div className="p-4 rounded-lg border border-gray-600/50 bg-gray-800/30 text-gray-300">
               <div className="flex items-center space-x-2">
@@ -161,14 +164,14 @@ export default function MintWorkNFT() {
             </div>
           )}
 
-          {/* 操作按钮 */}
+          {/* Action Buttons */}
           <div className="flex justify-end space-x-3 pt-4">
             <Button
               variant="outline"
               onClick={() => setOpen(false)}
               className="border-gray-600/50 text-gray-300 hover:bg-gray-800/50 bg-transparent"
             >
-              取消
+              Cancel
             </Button>
             <Button
               onClick={mintNFT}
@@ -184,7 +187,7 @@ export default function MintWorkNFT() {
               ) : (
                 <Plus className="w-4 h-4 mr-2" />
               )}
-              {loading ? '铸造中...' : 'Mint NFT'}
+              {loading ? 'Minting...' : 'Mint NFT'}
             </Button>
           </div>
         </motion.div>

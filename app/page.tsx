@@ -35,7 +35,7 @@ export default function HomePage() {
     router.push(type === 'user' ? '/user/dashboard' : '/enterprise/dashboard')
   }
 
-  // 打字机效果的文字配置
+  // Typewriter effect text configuration
   const words = [
     {
       text: 'Decentralized',

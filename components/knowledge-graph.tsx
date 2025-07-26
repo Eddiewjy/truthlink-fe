@@ -296,8 +296,8 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
       .append('marker')
       .attr('id', 'ceo-arrow')
       .attr('viewBox', '0 -3 8 6')
-      .attr('refX', 20) // 调整这个值来改变箭头距离节点的远近
-      .attr('refY', 0) // 调整这个值来改变箭头的垂直偏移
+      .attr('refX', 20) // Adjust this value to change arrow distance from node
+      .attr('refY', 0) // Adjust this value to change arrow vertical offset
       .attr('markerWidth', 6)
       .attr('markerHeight', 6)
       .attr('orient', 'auto')
@@ -311,8 +311,8 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
       .append('marker')
       .attr('id', 'regular-arrow')
       .attr('viewBox', '0 -3 8 6')
-      .attr('refX', 30) // 调整这个值来改变箭头距离节点的远近
-      .attr('refY', 0) // 调整这个值来改变箭头的垂直偏移
+      .attr('refX', 30) // Adjust this value to change arrow distance from node
+      .attr('refY', 0) // Adjust this value to change arrow vertical offset
       .attr('markerWidth', 6)
       .attr('markerHeight', 6)
       .attr('orient', 'auto')

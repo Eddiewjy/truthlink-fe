@@ -13,6 +13,14 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { FileUpload } from '@/components/ui/file-upload'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import {
   Search,
   Users,
@@ -130,11 +138,15 @@ export default function EnterpriseDashboard() {
                       <label className="text-sm font-medium text-gray-300">
                         Employment Type
                       </label>
-                      <select className="w-full px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-white rounded-md">
-                        <option value="">Select type</option>
-                        <option value="internship">Internship</option>
-                        <option value="full-time">Full-time</option>
-                      </select>
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="internship">Internship</SelectItem>
+                          <SelectItem value="full-time">Full-time</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-300">
@@ -220,16 +232,15 @@ export default function EnterpriseDashboard() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300">
-                      Activity Image
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      className="bg-gray-800/50 border-gray-600/50 text-white"
-                    />
-                  </div>
+                  <FileUpload
+                    label="Activity Image"
+                    accept="image/*"
+                    type="image"
+                    onFileSelect={(file) => {
+                      console.log('Activity image selected:', file.name)
+                      // File upload logic can be handled here
+                    }}
+                  />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-300">
@@ -263,8 +274,8 @@ export default function EnterpriseDashboard() {
                         Activity Time
                       </label>
                       <Input
-                        type="datetime-local"
-                        className="bg-gray-800/50 border-gray-600/50 text-white"
+                        placeholder="Enter activity time"
+                        className="bg-gray-800/50 border-gray-600/50 text-white placeholder:text-gray-400"
                       />
                     </div>
                     <div className="space-y-2">
@@ -306,16 +317,15 @@ export default function EnterpriseDashboard() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300">
-                      Contribution Image
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      className="bg-gray-800/50 border-gray-600/50 text-white"
-                    />
-                  </div>
+                  <FileUpload
+                    label="Contribution Image"
+                    accept="image/*"
+                    type="image"
+                    onFileSelect={(file) => {
+                      console.log('Contribution image selected:', file.name)
+                      // File upload logic can be handled here
+                    }}
+                  />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-300">
@@ -408,16 +418,15 @@ export default function EnterpriseDashboard() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300">
-                      Competition Image
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      className="bg-gray-800/50 border-gray-600/50 text-white"
-                    />
-                  </div>
+                  <FileUpload
+                    label="Competition Image"
+                    accept="image/*"
+                    type="image"
+                    onFileSelect={(file) => {
+                      console.log('Competition image selected:', file.name)
+                      // File upload logic can be handled here
+                    }}
+                  />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-300">
@@ -459,13 +468,21 @@ export default function EnterpriseDashboard() {
                       <label className="text-sm font-medium text-gray-300">
                         Participation Role
                       </label>
-                      <select className="w-full px-3 py-2 bg-gray-800/50 border border-gray-600/50 text-white rounded-md">
-                        <option value="">Select role</option>
-                        <option value="project-lead">Project Lead</option>
-                        <option value="developer">Technical Developer</option>
-                        <option value="designer">Designer</option>
-                        <option value="other">Other</option>
-                      </select>
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="project-lead">
+                            Project Lead
+                          </SelectItem>
+                          <SelectItem value="developer">
+                            Technical Developer
+                          </SelectItem>
+                          <SelectItem value="designer">Designer</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-300">
@@ -504,16 +521,15 @@ export default function EnterpriseDashboard() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300">
-                      Research Image
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      className="bg-gray-800/50 border-gray-600/50 text-white"
-                    />
-                  </div>
+                  <FileUpload
+                    label="Research Image"
+                    accept="image/*"
+                    type="image"
+                    onFileSelect={(file) => {
+                      console.log('Research image selected:', file.name)
+                      // File upload logic can be handled here
+                    }}
+                  />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-300">

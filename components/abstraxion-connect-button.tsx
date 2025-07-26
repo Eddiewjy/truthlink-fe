@@ -58,7 +58,7 @@ export function AbstraxionConnectButton({
           structure="base"
           className="bg-red-600 hover:bg-red-700 text-white border-red-600 hover:border-red-700"
         >
-          {loading ? '断开中...' : disconnectText}
+          {loading ? 'Disconnecting...' : disconnectText}
         </Button>
       </div>
     )
@@ -76,7 +76,7 @@ export function AbstraxionConnectButton({
   )
 }
 
-// 兼容rainbowkit的ConnectButton接口的包装组件
+// Wrapper component compatible with rainbowkit's ConnectButton interface
 export function ConnectButton() {
   return <AbstraxionConnectButton />
 }

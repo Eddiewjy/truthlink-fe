@@ -54,7 +54,7 @@ export default function MintNFTPage() {
   const [ipfsContentType, setIpfsContentType] = useState<string>('')
   const [ipfsContent, setIpfsContent] = useState<any>(null)
 
-  // 上传文件到IPFS（Pinata）
+  // Upload file to IPFS (Pinata)
   const uploadToIPFS = async (file: File) => {
     setLoading(true)
     setUploadResult('')
@@ -80,10 +80,10 @@ export default function MintNFTPage() {
       const data = await res.json()
       const ipfsUrl = `ipfs://${data.IpfsHash}`
       setUploadedIpfsUrl(ipfsUrl)
-      setUploadResult(`上传成功！IPFS地址: ${ipfsUrl}`)
+      setUploadResult(`Upload successful! IPFS address: ${ipfsUrl}`)
       setTokenUri(ipfsUrl)
     } catch (error: any) {
-      setUploadResult('上传失败: ' + (error.message || error.toString()))
+      setUploadResult('Upload failed: ' + (error.message || error.toString()))
     }
     setLoading(false)
   }
@@ -93,27 +93,28 @@ export default function MintNFTPage() {
     setLoading(true)
     setMintResult('')
     try {
-      if (!tokenId || !tokenUri) throw new Error('请填写 token_id 和 token_uri')
+      if (!tokenId || !tokenUri)
+        throw new Error('Please fill in token_id and token_uri')
 
-      // 1. 拿到 owner 钱包的 signer / 地址
+      // 1. Get owner wallet signer / address
       const { client: ownerClient, ownerAddr } = await getOwnerClient()
 
-      // 2. 组装执行消息
+      // 2. Assemble execution message
       const msg = {
         mint: {
           token_id: tokenId,
-          owner: receiver || ownerAddr, // 接收者
+          owner: receiver || ownerAddr, // Receiver
           token_uri: tokenUri
         }
       }
 
-      // 3. 设定费率（千万别写 payer / granter）
+      // 3. Set fee rate (never write payer / granter)
       const fee: StdFee = {
         amount: [{ denom: 'uxion', amount: '6000' }], // 0.006 XION
         gas: '230000'
       }
 
-      // 4. 由 ownerAddr 执行
+      // 4. Execute by ownerAddr
       const res = await ownerClient.execute(
         ownerAddr,
         contractAddress,
@@ -121,9 +122,9 @@ export default function MintNFTPage() {
         fee
       )
 
-      setMintResult(`Mint 成功！TxHash: ${res.transactionHash}`)
+      setMintResult(`Mint successful! TxHash: ${res.transactionHash}`)
     } catch (e: any) {
-      setMintResult('mint 失败: ' + (e.message || e.toString()))
+      setMintResult('Mint failed: ' + (e.message || e.toString()))
     }
     setLoading(false)
   }

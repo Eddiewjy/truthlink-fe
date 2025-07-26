@@ -8,12 +8,13 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
 interface FileUploadProps {
-  onFileSelect: (file: File, content: string) => void
+  onFileSelect: (file: File, content?: string) => void
   accept?: string
   label: string
   required?: boolean
   currentFile?: string
   className?: string
+  type?: 'text' | 'image'
 }
 
 export const FileUpload: React.FC<FileUploadProps> = ({
@@ -22,7 +23,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   label,
   required = false,
   currentFile,
-  className
+  className,
+  type = 'text'
 }) => {
   const [isDragOver, setIsDragOver] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
@@ -32,23 +34,29 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     async (file: File) => {
       setIsUploading(true)
       try {
-        // 使用 Promise 包装文件读取
-        const fileContent = await new Promise<string>((resolve, reject) => {
-          const reader = new FileReader()
-          reader.onload = (e) => resolve(e.target?.result as string)
-          reader.onerror = reject
-          reader.readAsText(file)
-        })
+        if (type === 'image') {
+          // For image files, only pass the file object without reading content
+          setUploadedFile(file.name)
+          onFileSelect(file)
+        } else {
+          // For text files, read content
+          const fileContent = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onload = (e) => resolve(e.target?.result as string)
+            reader.onerror = reject
+            reader.readAsText(file)
+          })
 
-        setUploadedFile(file.name)
-        onFileSelect(file, fileContent)
+          setUploadedFile(file.name)
+          onFileSelect(file, fileContent)
+        }
       } catch (error) {
         console.error('File upload error:', error)
       } finally {
         setIsUploading(false)
       }
     },
-    [onFileSelect]
+    [onFileSelect, type]
   )
 
   const handleFileChange = useCallback(
@@ -153,7 +161,9 @@ export const FileUpload: React.FC<FileUploadProps> = ({
                     : 'Click to upload or drag & drop'}
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
-                  Supports: TXT, PDF, DOC, DOCX
+                  {type === 'image'
+                    ? 'Supports: JPG, PNG, GIF, WebP'
+                    : 'Supports: TXT, PDF, DOC, DOCX'}
                 </p>
               </div>
             </div>

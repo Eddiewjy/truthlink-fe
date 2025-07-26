@@ -113,7 +113,7 @@ export default function UserDashboard() {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* 用户基础信息卡片 */}
+          {/* User basic information card */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -153,7 +153,7 @@ export default function UserDashboard() {
               </CardHeader>
             </Card>
 
-            {/* NFT查询组件 */}
+            {/* NFT query component */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export default function UserDashboard() {
               <NFTViewer defaultWallet={walletAddress || undefined} />
             </motion.div>
 
-            {/* 最近获得的NFT卡片 */}
+            {/* Recently obtained NFT cards */}
             <Card className="bg-gray-900/80 border-gray-700/50 backdrop-blur-sm">
               <CardHeader>
                 <div className="flex items-center space-x-2">
@@ -213,7 +213,7 @@ export default function UserDashboard() {
             </Card>
           </motion.div>
 
-          {/* 模块跳转区域 */}
+          {/* Module navigation area */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -221,7 +221,7 @@ export default function UserDashboard() {
             className="lg:col-span-2"
           >
             <div className="grid gap-6">
-              {/* IPFS Reader组件 */}
+              {/* IPFS Reader component */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -272,7 +272,7 @@ export default function UserDashboard() {
                 ))}
               </div>
 
-              {/* 额外的统计信息 */}
+              {/* Additional statistics information */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

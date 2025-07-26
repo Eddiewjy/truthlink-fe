@@ -229,7 +229,7 @@ export const AgentProcessVisualization: React.FC<
       setCurrentStep(0)
       setIsProcessing(true)
 
-      // 模拟处理过程
+      // Simulate processing
       let stepIndex = 0
       const processStep = () => {
         if (stepIndex < processSteps.length) {
@@ -242,7 +242,7 @@ export const AgentProcessVisualization: React.FC<
             })
           )
 
-          // 模拟进度更新
+          // Simulate progress updates
           let progress = 0
           const progressInterval = setInterval(() => {
             progress += Math.random() * 20 + 5
