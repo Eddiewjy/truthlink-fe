@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { AbstraxionConnectButton } from './abstraxion-connect-button'
 import { Button } from '@/components/ui/button'
 import { Shield, User, FileText, Settings, LogOut } from 'lucide-react'
 import Link from 'next/link'
@@ -52,7 +52,7 @@ export function UserNavigation() {
             transition={{ delay: 0.2 }}
             className="flex items-center space-x-4"
           >
-            <ConnectButton />
+            <AbstraxionConnectButton />
           </motion.div>
         </div>
       </div>

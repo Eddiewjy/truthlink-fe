@@ -4,26 +4,12 @@ import type React from 'react'
 
 import { Inter } from 'next/font/google'
 import './globals.css'
-import '@rainbow-me/rainbowkit/styles.css'
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { WagmiProvider } from 'wagmi'
-import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { AbstraxionProvider } from "@burnt-labs/abstraxion"
+import { AbstraxionProvider } from '@burnt-labs/abstraxion'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const config = getDefaultConfig({
-  appName: 'VerifyChain',
-  projectId: 'YOUR_PROJECT_ID',
-  chains: [mainnet, polygon, optimism, arbitrum, base],
-  ssr: true
-})
-
-const queryClient = new QueryClient()
-
 const abstraxionConfig = {
-  rpcUrl: "https://rpc.xion-testnet-2.burnt.com:443"
+  rpcUrl: 'https://rpc.xion-testnet-2.burnt.com:443'
 }
 
 export default function RootLayout({
@@ -38,15 +24,9 @@ export default function RootLayout({
         <meta httpEquiv="Content-Language" content="en" />
       </head>
       <body className={inter.className}>
-        <WagmiProvider config={config}>
-          <QueryClientProvider client={queryClient}>
-            <RainbowKitProvider>
-              <AbstraxionProvider config={abstraxionConfig}>
-                {children}
-              </AbstraxionProvider>
-            </RainbowKitProvider>
-          </QueryClientProvider>
-        </WagmiProvider>
+        <AbstraxionProvider config={abstraxionConfig}>
+          {children}
+        </AbstraxionProvider>
       </body>
     </html>
   )

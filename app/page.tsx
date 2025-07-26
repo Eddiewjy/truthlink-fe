@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useAccount } from 'wagmi'
+import { AbstraxionConnectButton } from '@/components/abstraxion-connect-button'
+import { useAbstraxionAccount } from '@burnt-labs/abstraxion'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
@@ -20,15 +20,15 @@ import { Boxes } from '@/components/ui/background-boxes'
 import { TypewriterEffectSmooth } from '@/components/ui/typewriter-effect'
 
 export default function HomePage() {
-  const { isConnected, address } = useAccount()
+  const { data: account } = useAbstraxionAccount()
   const router = useRouter()
   const { userType, setUserType, setWalletAddress } = useAuthStore()
 
   useEffect(() => {
-    if (isConnected && address) {
-      setWalletAddress(address)
+    if (account?.bech32Address) {
+      setWalletAddress(account.bech32Address)
     }
-  }, [isConnected, address, setWalletAddress])
+  }, [account?.bech32Address, setWalletAddress])
 
   const handleUserTypeSelection = (type: 'user' | 'enterprise') => {
     setUserType(type)
@@ -84,7 +84,7 @@ export default function HomePage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <ConnectButton />
+              <AbstraxionConnectButton />
             </motion.div>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function HomePage() {
             </span>
           </motion.p>
 
-          {!isConnected ? (
+          {!account?.bech32Address ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
