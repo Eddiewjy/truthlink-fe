@@ -8,7 +8,7 @@ import "@burnt-labs/ui/dist/index.css";
 const inter = Inter({ subsets: ['latin'] })
 
 const treasuryConfig = {
-  treasury: process.env.NEXT_PUBLIC_TREASURY_ADDRESS,
+  treasury: process.env.NEXT_PUBLIC_TREASURY_ADDRESS || "xion1tfc94gkee0k68n0xxlq04kx6qrflmxj7r24vrecx0jcujaklry5s09sft5",
   rpcUrl: process.env.NEXT_PUBLIC_RPC_URL || "https://rpc.xion-testnet-2.burnt.com:443",
   restUrl: process.env.NEXT_PUBLIC_REST_URL || "https://api.xion-testnet-2.burnt.com",
 };
